@@ -1,0 +1,565 @@
+/*   <-- Tag Styles -->   */
+
+a {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    font-style: normal;
+    position: relative;
+}
+
+
+body {
+    margin: 0;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 200px;
+    height: 44px;
+    
+    background-color: #fee5d1;
+    border: 1px solid #713F12;
+    border-radius: 20px;
+
+    padding-left: 3%;
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 20px;
+    color: #713F12;
+    text-shadow: 0px 2px 3px #713F12;
+    text-shadow: 0px 1px 2px #997404;
+}
+
+input[type="text"]::placeholder,
+input[type="password"]::placeholder {
+    font-size: 20px;
+    color: #713F12;
+    opacity: 0.4;
+}
+
+/*   <-- Nav Styles -->   */
+
+nav {
+    width: 100%;
+    height: 150px;
+    background-color: #b58d55;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5%;
+}
+
+div.page, 
+div.current_page {
+    position: relative;
+    transition: transform 0.2s ease;
+}
+
+div.page:hover,
+div.current_page:hover {
+    transform: scale(1.2);
+}
+
+div.page:active,
+div.current_page:active {
+    transform: scale(0.88)
+}
+
+div.page::before,
+div.current_page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 120px;
+    height: 120px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease; 
+}
+
+div.page::before {
+    background-image: url(../../assets/page_buttons/button_tiger_background.png);
+}
+
+div.current_page::before {
+    background-image: url(../../assets/page_buttons/current_button_tiger_background.png)
+}
+
+div.page:hover::before,
+div.current_page:hover::before {
+    opacity: 1;
+}
+
+div.page:hover .page_icon,
+div.current_page:hover .page_icon {
+    opacity: 0;
+}
+
+.page_icon {
+    width: 120px;
+    height: 120px;
+    position: flex;
+    align-items: center;
+    transition: opacity 0.15s ease;
+}
+
+
+.page_button_text {
+    position: absolute;
+    top: -100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif, sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: #000000;
+    text-shadow: 0px 1px 1px #000000;
+}
+
+#page_button_text_leaderboard {
+    position: absolute;
+    top: -100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #000000;
+    text-shadow: 0px 1px 1px #000000;
+}
+
+#belt {
+    position: relative;
+    isolation: isolate;
+    width: 100%;
+    height: 75px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#belt_video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.belt_text {
+    width: 100%;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    text-align: center;
+    font-family: Inter, sans-serif cursive;
+    font-size: 50px;
+    font-weight: 800;
+    color: #ffffff;
+    text-shadow: 2px 2px 2px #000000;
+    text-shadow: 3px 3px 0px #000000;
+    gap: 5%;
+}
+
+.belt_text_blur {
+    margin: 0;
+    padding: 0;
+    border: none;
+    backdrop-filter: blur(2px);
+}
+
+#divider {
+    width: 100%;
+    height: 5px;
+    background-color: #614723;
+}
+
+/*   <-- Main Content Styles -->   */
+
+
+/*   <-- HOME PAGE -->   */
+
+
+
+#main_content_title {
+    position: absolute;
+    top: 30%;
+    left: 50px;
+    font-family: Inter, sans-serif cursive;
+    font-size: 80px;
+    font-weight: 1000;
+    color: #ffffff;
+    text-shadow: 3px 3px 1px #000000;
+    text-shadow: 2px 2px 10px #000000;
+    backdrop-filter: blur(2px);
+}
+
+#main_content_home {
+    width: 100%;
+    height: 880px;
+    background-image: url('../../assets/backgrounds/home_background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#home_instructions {
+    width: 500px;
+    height: 500px;
+    position: absolute;
+    top: 60%;
+    left: 15%;
+}
+
+#home_character {
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: 70%;
+    right: 15%;
+    backdrop-filter: blur(1px)
+}
+
+
+
+/*   <-- LOGIN PAGE -->   */
+
+
+
+#main_content_login {
+    width: 100%;
+    height: 880px;
+    background-image: url('../../assets/backgrounds/login_background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#login_character {
+    position: absolute;
+    top: 65%;
+    left: 200px;
+    backdrop-filter: blur(1);
+}
+
+#login {
+    position: absolute;
+    top: 70%;
+    left:43%;
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 40px;
+    font-weight: 1000;
+    color: #713F12;
+    text-shadow: 0px 2px 3px #713F12;
+    text-shadow: 0px 1px 2px #997404;
+}
+
+#login_table {
+    position:absolute;
+    top: 83%;
+    left: 32%;
+}
+
+#login_table td {
+    height: 50px;
+    padding: 15px 30px;
+    text-align: center;
+    vertical-align: center;
+}
+
+.login_table_content {
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 30px;
+    font-weight: 300;
+    color: #713F12;
+    text-shadow: 0px 2px 3px #713F12;
+    text-shadow: 0px 1px 2px #997404;
+}
+
+#login_button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 110%;
+    left: 54.5%;
+    transform: rotate(11deg);
+    padding-left: 40px;
+    padding-right: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-decoration: underline;
+
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 34px;
+    font-weight: 600;
+    color: #713F12;
+    text-shadow: 0px 2px 3px #713F12;
+    text-shadow: 0px 1px 2px #997404;
+}
+
+#login_button_background {
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: 106%;
+    left: 51%;
+}
+
+
+
+#not_registered_button {
+    position: absolute;
+    top: 118%;
+    left: 34%;
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 11px;
+    font-weight: 300;
+    color: #713F12;
+    text-shadow: 0px 2px 3px #713F12;
+    text-shadow: 0px 1px 2px #997404;
+}
+
+
+/*   <-- REGISTER PAGE -->   */
+
+
+
+#main_content_register {
+    width: 100%;
+    height: 880px;
+    background-image: url('../../assets/backgrounds/register_background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#register {
+    position: absolute;
+    top: 70%;
+    left:45%;
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 40px;
+    font-weight: 1000;
+    color: #713F12;
+    text-shadow: 0px 2px 3px #713F12;
+    text-shadow: 0px 1px 2px #997404;
+}
+
+#register_character {
+    position: absolute;
+    top: 65%;
+    left: 35%;
+    backdrop-filter: blur(1);
+}
+
+#register_table {
+    position:absolute;
+    top: 80%;
+    left: 35%;
+}
+
+#register_table td {
+    padding: 8px 20px;
+    text-align: right;
+    vertical-align: center;
+}
+
+.register_table_content {
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 20px;
+    font-weight: 300;
+    color: #713F12;
+    text-shadow: 0px 2px 3px #713F12;
+    text-shadow: 0px 1px 2px #997404;
+}
+
+#password_specifications {
+    position: absolute;
+    top: 107%;
+    left: 36.5%;
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 12px;
+    font-weight: 300;
+    color: #713F12;
+    text-shadow: 0px 2px 3px #713F12;
+    text-shadow: 0px 1px 2px #997404;
+}
+
+#register_button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 111.5%;
+    left: 56%;
+    transform: rotate(11deg);
+    padding-left: 30px;
+    padding-right: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-decoration: underline;
+
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 22px;
+    font-weight: 600;
+    color: #713F12;
+    text-shadow: 0px 2px 3px #713F12;
+    text-shadow: 0px 1px 2px #997404;
+}
+
+#register_button_background {
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: 106%;
+    left: 52%;
+}
+
+#already_registered_button {
+    position: absolute;
+    top: 120%;
+    left: 38%;
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 11px;
+    font-weight: 300;
+    color: #713F12;
+    text-shadow: 0px 2px 3px #713F12;
+    text-shadow: 0px 1px 2px #997404;
+}
+
+
+/*   <-- GAME PAGE -->   */
+
+
+
+#main_content_game {
+    width: 100%;
+    height: 880px;
+    background-image: url('../../assets/backgrounds/game_background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+
+/*   <-- LEADERBOARD PAGE -->   */
+
+
+
+#main_content_leaderboard {
+    width: 100%;
+    height: 880px;
+    background-image: url('../../assets/backgrounds/leaderboard_background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#leaderboard_background {
+    position: absolute;
+    top: 45%;
+    left: 20%;
+}
+
+
+
+/*   <-- Footer Styles -->   */
+
+#footer {
+    width: 100%;
+    height: 80px;
+    background-color: #b58d55;
+    color: #fff;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1%;
+}
+
+.footer_social_media {
+    width: 30px;
+    height: 30px;
+    position: relative;
+    left: 10px;
+}
+
+#footer_social_media_text {
+    font-family: Inter, sans-serif cursive;
+    font-size: 20px;
+    font-weight: 600;
+    font-style: italic;
+    color: black;
+    text-decoration: underline;
+    padding-left: 20px;
+}
+
+#footer_text {
+    position: absolute;
+    align-items: center;
+    font-size: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#footer_email {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    right: 75px;
+    font-family: Inter, sans-serif cursive;
+    font-size: 20px;
+    font-style: italic;
+    color: black;
+    font-weight: 600;
+}
+
+#footer_email_link {
+    font-size: 16px;
+    font-weight: 300;
+    padding-right: 35px;
+    padding-left: 10px;
+    font-style: italic;
+}
+
+#footer_email_icon {
+    width: 30px;
+    height: 30px;
+}   

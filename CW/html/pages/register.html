@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="icon" href="../../assets/elements/aisle_nine_emoji.png">
+        <title>Register Page</title>
+        
+        <link rel="stylesheet" href="../CSS/styles.css">
+    </head>
+
+    <body>
+        <nav>
+            <div class="page">
+                <a class="page_style" href="../index.html">
+                    <img class="page_icon" src="../../assets/page_buttons/button_background.png" alt="Home Icon">
+                    <span class="page_button_text">Home</span>
+                </a>
+            
+            </div>
+            <div class="page">
+                <a class="page_style" href="login.html">
+                    <img class="page_icon" src="../../assets/page_buttons/button_background.png" alt="Login Icon">
+                    <span class="page_button_text">Login</span>
+                </a>
+            </div>
+            <div class="current_page">
+                <a id="current_page_style" href="register.html">
+                    <img class="page_icon" src="../../assets/page_buttons/current_button_background.png" alt="Register Icon">
+                    <span class="page_button_text">Register</span>
+                </a>
+            </div>
+            <div class="page">
+                <a class="page" href="game.html">
+                    <img class="page_icon" src="../../assets/page_buttons/button_background.png" alt="Game Icon">
+                    <span class="page_button_text">Game</span>
+                </a>
+            </div>
+            <div class="page">
+                <a class="page" href="leaderboard.html">
+                    <img class="page_icon" src="../../assets/page_buttons/button_background.png" alt="Leaderboard Icon">
+                    <span id="page_button_text_leaderboard">Leaderboard</span>
+                </a>
+            </div>
+        </nav>
+
+        <div id="divider">
+        </div>
+
+        <div id="belt">
+            <video id="belt_video" autoplay muted loop playsinline aria-hidden="true">
+                <source src="../../assets/belt_loop_slow_brown.mp4" type="video/mp4">
+            </video>
+
+            <div class="belt_text">
+                <span class="belt_text_blur">Move!</span>
+                <span class="belt_text_blur">Pick Up!</span>
+                <span class="belt_text_blur">Avoid!</span>
+                <span class="belt_text_blur">Unlock!</span>
+                <span class="belt_text_blur">Finish!</span>
+                <span class="belt_text_blur">Fast!</span>
+            </div>
+        </div>
+
+        <div id="divider">
+        </div>
+
+
+        <div id="main_content_register">
+            <h1 id="main_content_title">Create a new account!</h1>
+            
+            <img id="register_character" src="../../assets/characters/register_page_character.png" alt="Register Character">
+
+            <h1 id="register">
+                Register
+            </h1>
+            <table id="register_table">
+                <tr>
+                    <td class="register_table_content">Username</td>
+                    <td><input type="text" placeholder="Username" id="register_username"></td>
+
+                </tr>
+                <tr>
+                    <td class="register_table_content">Password</td>>
+                    <td><input type="password" placeholder="Password" id="register_password"></td>
+                </tr>
+                <tr>
+                    <td class="register_table_content">Confirm Password</td>>
+                    <td><input type="password" placeholder="Confirm Password" id="register_confirm_password"></td>
+                </tr>
+
+            </table>
+
+            <p id="password_specifications">
+                Password must be at least 8 characters<br> and include at least one uppercase letter,<br>
+                 one number, and one special character.
+            </p>
+
+            <a id="already_registered_button" href="login.html">Already registered? Click to login.</a>
+
+            <div>
+                <img id="register_button_background" src="../../assets/elements/login_register_button.png" alt="Register Button Background">
+                <button type="submit" id="register_button">Register</button>
+            </div>
+
+        </div>
+        
+
+        <footer id="footer">
+            <p id="footer_social_media_text">
+            Check out our social media:
+            </p>
+            
+            <a href="https://www.instagram.com" target="_blank">
+                <img class="footer_social_media" src="../../assets/footer_icons/instagram.png" alt="Footer Instagram Icon">
+            </a>
+            <a href="https://www.youtube.com" target="_blank">
+                <img class="footer_social_media" src="../../assets/footer_icons/youtube.png" alt="Footer Youtube Icon">
+            </a>
+            <a href="https://www.facebook.com" target="_blank">
+                <img class="footer_social_media" src="../../assets/footer_icons/facebook.png" alt="Footer Facebook Icon">
+            </a>
+            <a href="https://www.tiktok.com" target="_blank">
+                <img class="footer_social_media" src="../../assets/footer_icons/tiktok.png" alt="Footer Tiktok Icon">
+            </a>
+            <a href="https://twitter.com" target="_blank">
+                <img class="footer_social_media" src="../../assets/footer_icons/X.png" alt="Footer X Icon">
+            </a>
+
+            <p id="footer_text">
+                © 2026 Aisle Nine. Created by Stepan Pelc. All rights reserved.
+            </p>
+
+            <div id="footer_email">
+                <p>
+                    Contact Us: <span id="footer_email_link">info@aislenine.com</span>
+                </p>
+                <a href="mailto:info@aislenine.com">
+                    <img id="footer_email_icon" src="../../assets/footer_icons/email.png" alt="Footer Email Icon">
+                </a>
+            </div>
+
+        </footer>
+    </body>
+    
+</html>
