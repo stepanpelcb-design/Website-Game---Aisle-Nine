@@ -6,44 +6,52 @@
 
         <link rel="icon" href="../../assets/elements/aisle_nine_emoji.png">
         <title>Game Page</title>
-        
         <link rel="stylesheet" href="../CSS/styles.css">
+
+        <script src="../../javascript/level_select.js" defer></script>
+        <script src="../../javascript/levels.js" defer></script>
+        <script src="../../javascript/game.js" defer></script>
     </head>
 
     <body>
-        <nav>
-            <div class="page">
-                <a class="page_style" href="../index.html">
-                    <img class="page_icon" src="../../assets/page_buttons/button_background.png" alt="Home Icon">
-                    <span class="page_button_text">Home</span>
-                </a>
-            
+        <header>
+            <div>
+                <img id="logo" src="../../assets/elements/aisle_nine_logo.png" alt="Aisle Nine Logo">
             </div>
-            <div class="page">
-                <a class="page_style" href="login.html">
-                    <img class="page_icon" src="../../assets/page_buttons/button_background.png" alt="Login Icon">
-                    <span class="page_button_text">Login</span>
-                </a>
-            </div>
-            <div class="page">
-                <a class="page_style" href="register.html">
-                    <img class="page_icon" src="../../assets/page_buttons/button_background.png" alt="Register Icon">
-                    <span class="page_button_text">Register</span>
-                </a>
-            </div>
-            <div class="current_page">
-                <a id="current_page_style" href="game.html">
-                    <img class="page_icon" src="../../assets/page_buttons/current_button_background.png" alt="Game Icon">
-                    <span class="page_button_text">Game</span>
-                </a>
-            </div>
-            <div class="page">
-                <a class="page" href="leaderboard.html">
-                    <img class="page_icon" src="../../assets/page_buttons/button_background.png" alt="Leaderboard Icon">
-                    <span id="page_button_text_leaderboard">Leaderboard</span>
-                </a>
-            </div>
-        </nav>
+            <nav>
+                <div class="page">
+                    <a class="page_style" href="../index.html">
+                        <img class="page_icon" src="../../assets/page_buttons/button_background.png" alt="Home Icon">
+                        <span class="page_button_text">Home</span>
+                    </a>
+                
+                </div>
+                <div class="page">
+                    <a class="page_style" href="login.html">
+                        <img class="page_icon" src="../../assets/page_buttons/button_background.png" alt="Login Icon">
+                        <span class="page_button_text">Login</span>
+                    </a>
+                </div>
+                <div class="page">
+                    <a class="page_style" href="register.html">
+                        <img class="page_icon" src="../../assets/page_buttons/button_background.png" alt="Register Icon">
+                        <span class="page_button_text">Register</span>
+                    </a>
+                </div>
+                <div class="current_page">
+                    <a id="current_page_style" href="game.html">
+                        <img class="page_icon" src="../../assets/page_buttons/current_button_background.png" alt="Game Icon">
+                        <span class="page_button_text">Game</span>
+                    </a>
+                </div>
+                <div class="page">
+                    <a class="page" href="leaderboard.html">
+                        <img class="page_icon" src="../../assets/page_buttons/button_background.png" alt="Leaderboard Icon">
+                        <span id="page_button_text_leaderboard">Leaderboard</span>
+                    </a>
+                </div>
+            </nav>
+        </header>
 
         <div id="divider">
         </div>
@@ -68,11 +76,27 @@
 
 
         <div id="main_content_game">
-            <h1 id="main_content_title">Play!</h1>
-            <p>
-                
-            </p>
+            <div id="level_select"> 
+            <img id="level_select_character" src="../../assets/characters/game_level_select_character.png" alt="Level Select Frame">
 
+            <img id="level_select_notepad" src="../../assets/game/level_select/game_notepad.png" alt="Level Select Notepad">
+
+                <button id="level_1" class="level" data-level="1">
+                    <img id="level_1_bar_code" src="../../assets/game/level_select/barcode_level_1.png" alt="Level 1 Bar Code">
+                    <span id="level_1_text">1</span>
+                </button>
+            </div>
+
+            <div id="level_screen" hidden>
+                <button id="back_to_level_select">
+                    Levels
+                </button>
+
+                <canvas id="game_canvas" width="750" height="750">
+
+                </canvas>
+
+            </div>
         </div>
         
 

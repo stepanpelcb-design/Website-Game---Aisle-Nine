@@ -8,6 +8,20 @@ a {
     position: relative;
 }
 
+header {
+    position: relative;
+}
+
+#logo {
+    position: absolute;
+    align-items: center;
+    width: 150px;
+    height: 150px;
+    top: 50%;
+    left: 5%;
+    transform: translateY(-50%)
+}
+
 
 body {
     margin: 0;
@@ -35,6 +49,11 @@ input[type="password"]::placeholder {
     font-size: 20px;
     color: #713F12;
     opacity: 0.4;
+}
+
+
+[hidden] {
+    display: none !important;
 }
 
 /*   <-- Nav Styles -->   */
@@ -563,3 +582,66 @@ div.current_page:hover .page_icon {
     width: 30px;
     height: 30px;
 }   
+
+
+
+/*   <-- GAME PAGE -->   */
+
+
+/*   <-- LEVEL SELECT -->   */
+
+
+#level_select_character {
+    position: absolute;
+    top: 75%;
+    right: 1%;
+    height: 500px;
+}
+
+#level_select_notepad {
+    position: absolute;
+    top: 35%;
+    left: 1%;
+}
+
+
+#level_select {
+    position: flex;
+
+}
+
+.level {
+    position: absolute;
+    width: 150px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+
+#level_1 {
+    top: 50%;
+    left: 7%;
+}
+
+#level_1_text {
+    top: 55%;
+    left: 10%;
+}
+
+
+#level_1_bar_code {
+    top: 45%;
+    left: 7%;
+    height: 75px;
+    width: 150px;
+}
+
+
+
+/*   <-- LEVEL CANVAS -->   */
+
+canvas {
+    border: 2px solid #000000;
+    display: block;
+}
