@@ -1,10 +1,11 @@
-// Getting elements by id and storing them
-
+// Storing the element id for level select and level screen.
 const levelSelect = document.getElementById("level_select");
 const levelScreen = document.getElementById("level_screen");
+const toLevelSelect = document.getElementById("back_to_level_select");
 
 
-// Function for starting the level
+/** Hides the level select screen and shows the game level, based on the "n" value.
+ *  Calls the game starting function. */
 
 function startLevel(n) {
     levelScreen.hidden = false;
@@ -12,7 +13,8 @@ function startLevel(n) {
     startGame(n);
 }
 
-// Function for returning to the level select
+/** Hides the level screen and shows the level select screen. 
+ *  Stops the current level loop. */
 
 function backToLevelSelect() {
     levelScreen.hidden = true;
@@ -20,13 +22,14 @@ function backToLevelSelect() {
     stopGame();
 }
 
-// Making the level buttons pressable
+// Checking if the button is pressed for every level.
 
-document.querySelectorAll(".level").forEach((button) => {
-    button.addEventListener("click", () => {
-        startLevel(Number(button.dataset.level));
+document.querySelectorAll(".level").forEach((levelButton) => {
+    levelButton.addEventListener("click", () => {
+        // Calling the "startLevel" function with respective "n" value.
+        startLevel(Number(levelButton.dataset.level));
     });
 });
 
 
-document.getElementById("back_to_level_select").addEventListener("click", backToLevelSelect)
+toLevelSelect.addEventListener("click", backToLevelSelect);

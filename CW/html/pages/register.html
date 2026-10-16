@@ -8,6 +8,8 @@
         <title>Register Page</title>
         
         <link rel="stylesheet" href="../CSS/styles.css">
+
+        <script src="../../javascript/validation.js" defer></script>
     </head>
 
     <body>
@@ -72,43 +74,38 @@
         </div>
 
 
-        <div id="main_content_register">
-            <h1 id="main_content_title">Create a new account!</h1>
-            
-            <img id="register_character" src="../../assets/characters/register_page_character.png" alt="Register Character">
+        <div id="mainContentRegister">
+            <h1 id="mainContentTitle">Create a new account!</h1>
 
-            <h1 id="register">
-                Register
-            </h1>
-            <table id="register_table">
-                <tr>
-                    <td class="register_table_content">Username</td>
-                    <td><input type="text" placeholder="Username" id="register_username"></td>
+            <div id="registerCard">
+                <img id="registerCharacter" src="../../assets/characters/register_page_character.png" alt="Register Character">
+                <h1 id="registerHeader">Register</h1>
+                
 
-                </tr>
-                <tr>
-                    <td class="register_table_content">Password</td>>
-                    <td><input type="password" placeholder="Password" id="register_password"></td>
-                </tr>
-                <tr>
-                    <td class="register_table_content">Confirm Password</td>>
-                    <td><input type="password" placeholder="Confirm Password" id="register_confirm_password"></td>
-                </tr>
+                <form action="" name="registerForm" id="registerForm">
 
-            </table>
+                    Username: <input type="text" name="Username" placeholder="Username" id="registerUsername" required> 
 
-            <p id="password_specifications">
-                Password must be at least 8 characters<br> and include at least one uppercase letter,<br>
-                 one number, and one special character.
-            </p>
+                    Age: <input type="number" name="age" placeholder="Age" id="registerAge" min="5" max="100" required>
 
-            <a id="already_registered_button" href="login.html">Already registered? Click to login.</a>
+                    Email: <input type="email" name="email" placeholder="Email" id="registerEmail" required>
 
-            <div>
-                <img id="register_button_background" src="../../assets/elements/login_register_button.png" alt="Register Button Background">
-                <button type="submit" id="register_button">Register</button>
+                    Phone Number: <input type="tel" name="phoneNumber" placeholder="+971 12 345 6789" id="registerPhoneNumber" required>
+
+                    Password: <input type="password" name="password" placeholder="Password" id="registerPassword" required>
+
+                    Confirm Password: <input type="password" name="confirmPassword" placeholder="Confirm password" id="registerConfirmPassword" required>
+                </form>
+
+                <p id="registerFeedback"></p>
+
+                <p id="registerText">After registering, <br>your score will be saved, <br>and you can climb the leaderboard!</p>
+
+                <img id="registerButtonBackground" src="../../assets/elements/login_register_button.png" alt="Register Button Background">
+                <button type="submit" form="registerForm" id="registerButton">Register</button>
+
+                <a id="alreadyRegisteredButton" href="login.html">Already registered? Click to login.</a>
             </div>
-
         </div>
         
 

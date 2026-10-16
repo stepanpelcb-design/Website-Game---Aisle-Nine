@@ -28,24 +28,60 @@ body {
 }
 
 input[type="text"],
-input[type="password"] {
-    width: 200px;
-    height: 44px;
+input[type="password"],
+input[type="email"] {
+    width: 230px;
+    height: 50px;
     
     background-color: #fee5d1;
-    border: 1px solid #713F12;
-    border-radius: 20px;
+    border: 2px solid #713F12;
+    border-radius: 25px;
 
     padding-left: 3%;
     font-family: 'Comic Sans MS', cursive;
-    font-size: 20px;
+    font-size: 24px;
+    color: #713F12;
+    text-shadow: 0px 2px 3px #713F12;
+    text-shadow: 0px 1px 2px #997404;
+}
+
+input[type="number"] {
+    width: 80px;
+    height: 50px;
+    
+    background-color: #fee5d1;
+    border: 2px solid #713F12;
+    border-radius: 25px;
+
+    padding-left: 3%;
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 24px;
+    color: #713F12;
+    text-shadow: 0px 2px 3px #713F12;
+    text-shadow: 0px 1px 2px #997404;
+}
+
+input[type="tel"] {
+    width: 190px;
+    height: 50px;
+    
+    background-color: #fee5d1;
+    border: 2px solid #713F12;
+    border-radius: 25px;
+
+    padding-left: 3%;
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 24px;
     color: #713F12;
     text-shadow: 0px 2px 3px #713F12;
     text-shadow: 0px 1px 2px #997404;
 }
 
 input[type="text"]::placeholder,
-input[type="password"]::placeholder {
+input[type="password"]::placeholder,
+input[type="email"]::placeholder,
+input[type="number"]::placeholder,
+input[type="tel"]::placeholder {
     font-size: 20px;
     color: #713F12;
     opacity: 0.4;
@@ -208,14 +244,11 @@ div.current_page:hover .page_icon {
 /*   <-- Main Content Styles -->   */
 
 
-/*   <-- HOME PAGE -->   */
-
-
-
-#main_content_title {
+#mainContentTitle {
     position: absolute;
-    top: 30%;
-    left: 50px;
+    top: 1%;
+    left: 2%;
+    margin-top: 10px;
     font-family: Inter, sans-serif cursive;
     font-size: 80px;
     font-weight: 1000;
@@ -225,7 +258,9 @@ div.current_page:hover .page_icon {
     backdrop-filter: blur(2px);
 }
 
-#main_content_home {
+/*   <-- HOME PAGE -->   */
+
+#mainContentHome {
     width: 100%;
     height: 880px;
     background-image: url('../../assets/backgrounds/home_background.png');
@@ -233,25 +268,26 @@ div.current_page:hover .page_icon {
     background-position: center;
     background-repeat: no-repeat;
     display: flex;
+    position: relative;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
 }
 
-#home_instructions {
+#homeInstructions {
     width: 500px;
     height: 500px;
     position: absolute;
-    top: 60%;
+    top: 20%;
     left: 15%;
 }
 
-#home_character {
+#homeCharacter {
     width: auto;
     height: auto;
     position: absolute;
-    top: 70%;
+    top: 30%;
     right: 15%;
     backdrop-filter: blur(1px)
 }
@@ -262,7 +298,7 @@ div.current_page:hover .page_icon {
 
 
 
-#main_content_login {
+#mainContentLogin {
     width: 100%;
     height: 880px;
     background-image: url('../../assets/backgrounds/login_background.png');
@@ -270,64 +306,64 @@ div.current_page:hover .page_icon {
     background-position: center;
     background-repeat: no-repeat;
     display: flex;
+    position: relative;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
 }
 
-#login_character {
-    position: absolute;
-    top: 65%;
-    left: 200px;
+#loginCard {
+    position: relative;
+}
+
+#loginCharacter {
+    margin-top: 10%;
     backdrop-filter: blur(1);
 }
 
-#login {
+
+#loginHeader {
     position: absolute;
-    top: 70%;
-    left:43%;
+    top: 24%;
+    left:48%;
     font-family: 'Comic Sans MS', cursive;
-    font-size: 40px;
+    font-size: 65px;
     font-weight: 1000;
     color: #713F12;
     text-shadow: 0px 2px 3px #713F12;
     text-shadow: 0px 1px 2px #997404;
 }
 
-#login_table {
-    position:absolute;
-    top: 83%;
-    left: 32%;
-}
+#loginForm {
+    position: absolute;
+    top: 43%;
+    left: 28%;
+    width: 600px;
+    text-align: right;
 
-#login_table td {
-    height: 50px;
-    padding: 15px 30px;
-    text-align: center;
-    vertical-align: center;
-}
-
-.login_table_content {
     font-family: 'Comic Sans MS', cursive;
     font-size: 30px;
-    font-weight: 300;
     color: #713F12;
     text-shadow: 0px 2px 3px #713F12;
     text-shadow: 0px 1px 2px #997404;
 }
 
-#login_button {
+#loginForm input {
+    margin: 25px;
+}
+
+#loginButton {
     background: none;
     border: none;
     cursor: pointer;
     position: absolute;
-    top: 110%;
-    left: 54.5%;
+    top: 79.5%;
+    left: 66.5%;
     transform: rotate(11deg);
     padding-left: 40px;
     padding-right: 20px;
-    padding-top: 20px;
+    padding-top: 15px;
     padding-bottom: 20px;
     text-decoration: underline;
 
@@ -339,24 +375,22 @@ div.current_page:hover .page_icon {
     text-shadow: 0px 1px 2px #997404;
 }
 
-#login_button_background {
+#loginButtonBackground {
     width: auto;
     height: auto;
     position: absolute;
-    top: 106%;
-    left: 51%;
+    top: 75%;
+    left: 63%;
 }
 
-
-
-#not_registered_button {
+#notRegisteredButton {
     position: absolute;
-    top: 118%;
-    left: 34%;
+    top: 85%;
+    left: 35%;
     font-family: 'Comic Sans MS', cursive;
-    font-size: 11px;
+    font-size: 14px;
     font-weight: 300;
-    color: #713F12;
+    color: #472609;
     text-shadow: 0px 2px 3px #713F12;
     text-shadow: 0px 1px 2px #997404;
 }
@@ -366,7 +400,7 @@ div.current_page:hover .page_icon {
 
 
 
-#main_content_register {
+#mainContentRegister {
     width: 100%;
     height: 880px;
     background-image: url('../../assets/backgrounds/register_background.png');
@@ -374,16 +408,25 @@ div.current_page:hover .page_icon {
     background-position: center;
     background-repeat: no-repeat;
     display: flex;
+    position: relative;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
 }
 
-#register {
+#registerCard {
+    position: relative;
+}
+
+#registerCharacter {
+    backdrop-filter: blur(1);
+}
+
+#registerHeader {
     position: absolute;
-    top: 70%;
-    left:45%;
+    top: 10%;
+    left: 30%;
     font-family: 'Comic Sans MS', cursive;
     font-size: 40px;
     font-weight: 1000;
@@ -392,53 +435,59 @@ div.current_page:hover .page_icon {
     text-shadow: 0px 1px 2px #997404;
 }
 
-#register_character {
+#registerForm {
     position: absolute;
-    top: 65%;
-    left: 35%;
-    backdrop-filter: blur(1);
-}
+    top: 25%;
+    left: 3%;
+    display: grid;
+    grid-template-columns: repeat(4, max-content);
 
-#register_table {
-    position:absolute;
-    top: 80%;
-    left: 35%;
-}
-
-#register_table td {
-    padding: 8px 20px;
-    text-align: right;
-    vertical-align: center;
-}
-
-.register_table_content {
     font-family: 'Comic Sans MS', cursive;
-    font-size: 20px;
-    font-weight: 300;
+    font-size: 18px;
+    color: #713F12;
+    text-shadow: 0px 2px 3px #713F12;
+    text-shadow: 0px 1px 2px #997404;
+    text-align: end;
+    align-items: center;
+    column-gap: 20px;
+}
+
+#registerFeedback {
+    position: absolute;
+    top: 58%;
+    left: 25%;
+
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 14px;
+    color: #b80505;
+    text-shadow: 0px 2px 3px #713F12;
+    text-shadow: 0px 1px 2px #997404;
+}
+
+#registerForm input {
+    margin: 10px;
+}
+
+#registerText {
+    position: absolute;
+    top: 60%;
+    left: 4%;
+
+    text-align: left;
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 18px;
     color: #713F12;
     text-shadow: 0px 2px 3px #713F12;
     text-shadow: 0px 1px 2px #997404;
 }
 
-#password_specifications {
-    position: absolute;
-    top: 107%;
-    left: 36.5%;
-    font-family: 'Comic Sans MS', cursive;
-    font-size: 12px;
-    font-weight: 300;
-    color: #713F12;
-    text-shadow: 0px 2px 3px #713F12;
-    text-shadow: 0px 1px 2px #997404;
-}
-
-#register_button {
+#registerButton {
     background: none;
     border: none;
     cursor: pointer;
     position: absolute;
-    top: 111.5%;
-    left: 56%;
+    top: 76%;
+    left: 54.5%;
     transform: rotate(11deg);
     padding-left: 30px;
     padding-right: 10px;
@@ -454,22 +503,22 @@ div.current_page:hover .page_icon {
     text-shadow: 0px 1px 2px #997404;
 }
 
-#register_button_background {
+#registerButtonBackground {
     width: auto;
     height: auto;
     position: absolute;
-    top: 106%;
-    left: 52%;
+    top: 70%;
+    left: 50%;
 }
 
-#already_registered_button {
+#alreadyRegisteredButton {
     position: absolute;
-    top: 120%;
-    left: 38%;
+    top: 85%;
+    left: 4%;
     font-family: 'Comic Sans MS', cursive;
-    font-size: 11px;
+    font-size: 14px;
     font-weight: 300;
-    color: #713F12;
+    color: #472609;
     text-shadow: 0px 2px 3px #713F12;
     text-shadow: 0px 1px 2px #997404;
 }
@@ -479,7 +528,7 @@ div.current_page:hover .page_icon {
 
 
 
-#main_content_game {
+#mainContentGame {
     width: 100%;
     height: 880px;
     background-image: url('../../assets/backgrounds/game_background.png');
@@ -498,7 +547,7 @@ div.current_page:hover .page_icon {
 
 
 
-#main_content_leaderboard {
+#mainContentLeaderboard {
     width: 100%;
     height: 880px;
     background-image: url('../../assets/backgrounds/leaderboard_background.png');
@@ -506,15 +555,16 @@ div.current_page:hover .page_icon {
     background-position: center;
     background-repeat: no-repeat;
     display: flex;
+    position: relative;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
 }
 
-#leaderboard_background {
+#leaderboardBackground {
     position: absolute;
-    top: 45%;
+    top: 10%;
     left: 20%;
 }
 
@@ -632,6 +682,25 @@ div.current_page:hover .page_icon {
 
 #level_1_bar_code {
     top: 45%;
+    left: 7%;
+    height: 75px;
+    width: 150px;
+}
+
+
+#level_3 {
+    top: 70%;
+    left: 7%;
+}
+
+#level_3_text {
+    top: 75%;
+    left: 10%;
+}
+
+
+#level_3_bar_code {
+    top: 75%;
     left: 7%;
     height: 75px;
     width: 150px;

@@ -8,6 +8,8 @@
         <title>Login Page</title>
         
         <link rel="stylesheet" href="../CSS/styles.css">
+
+        <script src="../../javascript/validation.js" defer></script>
     </head>
 
     <body>
@@ -72,32 +74,33 @@
         </div>
 
 
-        <div id="main_content_login">
-            <h1 id="main_content_title">Log back in!</h1>
+        <div id="mainContentLogin">
+            <h1 id="mainContentTitle">Log back in!</h1>
 
-            <img id="login_character" src="../../assets/characters/login_page_character.png" alt="Login Character">
+            <div id="loginCard">
 
-            <h1 id="login">
-                LOGIN
-            </h1>
-            <table id="login_table">
-                <tr>
-                    <td class="login_table_content">Username</td>
-                    <td><input type="text" placeholder="Username" id="login_username"></td>
+                <img id="loginCharacter" src="../../assets/characters/login_page_character.png" alt="Login Character">
 
-                </tr>
-                <tr>
-                    <td class="login_table_content">Password</td>>
-                    <td><input type="password" placeholder="Password" id="login_password"></td>
-                </tr>
+                <h1 id="loginHeader">
+                    Login
+                </h1>
 
-            </table>
+                <form onsubmit="submitLoginForm()" name="loginForm" id="loginForm">
 
-            <a id="not_registered_button" href="register.html">Not registered yet? Click here.</a>
+                        Username: <input type="text" name="Username" placeholder="Username" required> <br>
 
-            <div>
-                <img id="login_button_background" src="../../assets/elements/login_register_button.png" alt="Login Button Background">
-                <button type="submit" id="login_button">Login</button>
+                        Password: <input type="password" name="password" placeholder="Password" required> <br>
+
+                </form>
+
+                <p id="loginFeedback"></p>
+
+                <a id="notRegisteredButton" href="register.html">Not registered yet? Click here.</a>
+
+                <div>
+                    <img id="loginButtonBackground" src="../../assets/elements/login_register_button.png" alt="Login Button Background">
+                    <button type="submit" id="loginButton">Login</button>
+                </div>
             </div>
 
         </div>
