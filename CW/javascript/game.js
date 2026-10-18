@@ -40,6 +40,8 @@ let inventory = [];
 
 const inventorySize = 2;
 
+const slowSpeedMultiplier = 0.4;
+
 // Defining device pixel ratio.
 
 const dpr = window.devicePixelRatio || 1;
@@ -360,6 +362,8 @@ function getTigerDirection(dx, dy) {
  *  based on the frame interval. */
 
 function updateTiger() {
+    const speed = tiger.speed * getSpeedMultiplier();
+
     // Defining variables for checking positional changes.
     let dx = 0;
     let dy = 0;
@@ -393,13 +397,13 @@ function updateTiger() {
     }
 
         // Creating variables and checking for collisions of the next move.
-    const nextX = tiger.x + dx * tiger.speed;
-    if (!collidesWithBoundary(getTigerHitbox(nextX, tiger.y))) {
+    const nextX = tiger.x + dx * speed;
+    if (!isMoveBlocked(getTigerHitbox(nextX, tiger.y))) {
         tiger.x = nextX;
     }
 
-    const nextY = tiger.y + dy * tiger.speed;
-    if (!collidesWithBoundary(getTigerHitbox(tiger.x, nextY))) {
+    const nextY = tiger.y + dy * speed;
+    if (!isMoveBlocked(getTigerHitbox(tiger.x, nextY))) {
         tiger.y = nextY;
     }
 
@@ -546,14 +550,15 @@ function getTigerHitbox(x, y) {
 
 function getElementHitbox(category, row, col) {
     const elementSize = tileSize * elementSizes[category];
-    const hitboxX = col * tileSize + (tileSize - elementSize) / 2;
-    const hitboxY = row * tileSize + (tileSize - elementSize) / 2;
+    const elementHitboxSize = elementSize * elementHitboxSizes[category];
+    const hitboxX = col * tileSize + (tileSize - elementHitboxSize) / 2;
+    const hitboxY = row * tileSize + (tileSize - elementHitboxSize) / 2;
 
     const elementCollisionBox = {
         x: hitboxX,
         y: hitboxY,
-        width: elementSize,
-        height: elementSize
+        width: elementHitboxSize,
+        height: elementHitboxSize
     };
 
     return elementCollisionBox;
@@ -562,10 +567,81 @@ function getElementHitbox(category, row, col) {
 function resetCrossable() {
     for (const element in currentObstacles) {
         const obstacle = currentObstacles[element];
-        obstacle.crossable = obstacle.row.map(() => false)
+        obstacle.crossable = obstacle.row.map(() => false);
     }
 }
 
+function getObstacleCollision(tigerHitbox) {
+    for (const element in currentObstacles) {
+        const obstacle = currentObstacles[element];
+        for (let i = 0; i < currentObstacles[element].row.length; i++) {
+            if (obstacle.crossable[i]) {
+                continue;
+            }
+            const obstacleHitbox = getElementHitbox("obstacles", obstacle.row[i], obstacle.col[i]);
+
+            if (detectCollision(tigerHitbox, obstacleHitbox)) {
+                return {
+                    name: element,
+                    index: i
+                };  
+            }
+        }
+    }
+
+    return null;
+}
+
+function isMoveBlocked(tigerHitbox) {
+    if (collidesWithBoundary(tigerHitbox)) {
+        return true;
+    }
+
+    const collision =   getObstacleCollision(tigerHitbox);
+
+    if (collision === null) {
+        return false;
+    }
+
+    if (hasPowerupInInventoryFor(collision.name)) {
+        makeObstacleWalkable(collision);
+        return false;
+    }
+
+    if (obstacleEffect[collision.name] === "slow") {
+        return false;
+    }
+
+    return true;
+}
+
+function makeObstacleUnwalkable() {
+    const tigerHitbox = getTigerHitbox(tiger.x, tiger.y);
+
+    for (const element in currentObstacles) {
+        const obstacle = currentObstacles[element];
+        for (let i = 0; i < currentObstacles[element].row.length; i++) {
+            if (!obstacle.crossable[i]) {
+                continue;
+            }
+            const elementHitboxes = getElementHitbox("obstacles", obstacle.row[i], obstacle.col[i]);
+
+            if (!detectCollision(tigerHitbox, elementHitboxes)) {
+                obstacle.crossable[i] = false;
+            }
+        }
+    }   
+}
+
+function getSpeedMultiplier() {
+    const tigerHitbox = getTigerHitbox(tiger.x, tiger.y);
+    const collision = getObstacleCollision(tigerHitbox)
+
+    if (collision !== null && obstacleEffect[collision.name] === "slow") {
+        return slowSpeedMultiplier;
+    }
+    return 1
+}
 
 
 
@@ -625,10 +701,22 @@ const elementSizes = {
     groceries: 0.8
 };
 
+const elementHitboxSizes = {
+    obstacles: 0.7,
+    powerups: 0.8,
+    groceries: 0.8
+}
+
 const obstaclesPowerups = {
     box: "ladder",
     bananaPeel: "energyDrink",
     angryOldLady: "water"
+}
+
+const obstacleEffect = {
+    box: "block",
+    bananaPeel: "slow",
+    angryOldLady: "block"
 }
 
 
@@ -766,6 +854,21 @@ function checkPickUps() {
     }
 }
 
+function hasPowerupInInventoryFor(obstacleName) {
+    const obstaclePowerup = obstaclesPowerups[obstacleName];
+
+    return (inventory.includes(obstaclePowerup));
+}
+
+function makeObstacleWalkable(collision) {
+    currentObstacles[collision.name].crossable[collision.index] = true;
+
+    const matchingPowerup = obstaclesPowerups[collision.name];
+    const position = inventory.indexOf(matchingPowerup);
+    inventory.splice(position, 1);
+}
+
+
 
 
 // ======================================================================================
@@ -785,6 +888,7 @@ function startGame(n) {
     pickedGroceries = [];
     inventory = [];
     tileSize = setTileSize(n);
+    resetCrossable();
     loadStructureImages(() => {
         loadElementImages(() => {
             setTigerSize(tileSize);
@@ -798,6 +902,7 @@ function startGame(n) {
 
 function animate() {
     updateTiger();
+    makeObstacleUnwalkable();
     drawMaze();
     checkPickUps();
     drawElementImages();
