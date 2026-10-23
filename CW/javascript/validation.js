@@ -2,59 +2,121 @@
 //          REGISTER AND LOGIN VALIDATION
 // ====================================================
 
-
-
+const { useReducer } = require("react");
 
 
 // ====================================================
 //                     Register
 // ====================================================
+
+
 let feedbackRegisterPara = document.getElementById("registerFeedback");
 let registerForm = document.getElementById("registerForm");
 
+let registerUsername = document.getElementById("registerUsername");
+let registerEmail = document.getElementById("registerEmail");
+let registerAge = document.getElementById("registerAge");
+let registerPhoneNumber = document.getElementById("registerPhoneNumber");
+let registerPassword = document.getElementById("registerPassword");
+let registerConfirmPassword = document.getElementById("registerConfirmPassword");
+
 const passwordRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{6,})");
+const phoneRegex = new RegExp("^[+]?[0-9]+$");
 
-registerForm.addEventListener("submit", (e) => {
-    let registerUsername = document.getElementById("registerUsername").value;
-    let registerEmail = document.getElementById("registerEmail").value;
-    let registerAge = document.getElementById("registerAge").value;
-    let registerPhoneNumber = document.getElementById("registerPhoneNumber").value;
-    let registerPassword = document.getElementById("registerPassword").value;
-    let registerConfirmPassword = document.getElementById("registerConfirmPassword").value;
 
-    let registerMessages = [];
+if (registerForm !== null) {
+    registerForm.addEventListener("input", () => {
+        registerUsername.setCustomValidity("");
+        registerEmail.setCustomValidity("");
+        registerPhoneNumber.setCustomValidity("");
+        registerPassword.setCustomValidity("");
+    })
 
-    feedbackRegisterPara.innerHTML = "Successfully registered.";
-
-    if (registerUsername.length < 4) {
-        registerMessages.push("The username has to be at least 4 characters.");
-    }
-
-    if (registerPassword !== registerConfirmPassword) {
-        registerMessages.push("Your passwords do not match.");
-    }
-
-    if (!passwordRegex.test(registerPassword)) {
-        registerMessages.push("Weak password. Password must be at least 8 characters <br>and include at least one uppercase letter, <br>one number, and one special character.");
-    }
-
-    if (registerMessages.length > 0) {
+    registerForm.addEventListener("submit", (e) => {
         e.preventDefault();
-        feedbackRegisterPara.innerHTML = registerMessages.join("<br>");
+
+        if (registerUsername.value.length < 4) {
+            registerUsername.setCustomValidity("The username has to be at least 4 characters.");
+            registerUsername.reportValidity();
+            return;
+        }
+
+        if (!phoneRegex.test(registerPhoneNumber.value)) {
+            registerPhoneNumber.setCustomValidity("The phone number must be numbers only (no spaces).");
+            registerPhoneNumber.reportValidity();
+            return;
+        }
+
+        if (registerPhoneNumber.value.length < 7) {
+            registerPhoneNumber.setCustomValidity("The phone number length must be at least 7.");
+            registerPhoneNumber.reportValidity();
+            return;
+        }
+
+        if (registerPhoneNumber.value.length > 12) {
+            registerPhoneNumber.setCustomValidity("The phone number length must be no more than 12.");
+            registerPhoneNumber.reportValidity();
+            return;
+        }
+
+        if (registerPassword.value !== registerConfirmPassword.value) {
+            registerPassword.setCustomValidity("Your passwords do not match.");
+            registerPassword.reportValidity();
+            return;
+        }
+
+        if (!passwordRegex.test(registerPassword.value)) {
+            registerPassword.setCustomValidity("Weak password. Please check password requirements.");
+            registerPassword.reportValidity();
+            return;
+        }
+
+        if (localStorage.getItem(registerUsername.value) !== null) {
+            registerUsername.setCustomValidity('The username "' + registerUsername.value + '" already exists.');
+            registerUsername.reportValidity();
+            return;
+        }
+
+        if (localStorage.getItem(registerEmail.value) !== null) {
+            registerEmail.setCustomValidity('The email "' + registerEmail + '" already exists.');
+            registerEmail.reportValidity();
+            return;
+        }
+
+        sessionStorage.setItem("successfullForm", "register");
+        window.location="game.html";
+        storeUser();
+    });
+}
+
+
+function storeUser() {
+    let userObj = {};
+    userObj.username = registerUsername.value;
+    userObj.age = calculateAge(registerDateOfBirth.value);
+    userObj.email = registerEmail.value;
+    userObj.phoneNumber = registerPhoneNumber;
+    userObj.password = registerPassword;
+
+    localStorage[userObj.username] = JSON.stringify(userObj);
+}
+
+
+function calculateAge(dateOfBirth) {
+    const birth = new Date(dateOfBirth);
+    const today = new Date();
+
+    let age = today.getFullYear() - birth.getFullYear();
+    const monthDifference = today.getMonth() - birth.getMonth();
+
+    if (monthDifference < 0) {
+        age--;
     }
-
-    else {
-        feedbackRegisterPara.innerHTML = "Successfully registered."
-        feedbackRegisterPara.style.color = "green";
-        e.preventDefault();
+    else if (monthDifference === 0 && today.getDate() < birth.getDate()) {
+        age--;
     }
-
-
-});
-
-
-
-
+    return age;
+}
 
 
 
@@ -64,23 +126,36 @@ registerForm.addEventListener("submit", (e) => {
 //                     Login
 // ====================================================
 
-let feedbackLoginPara = document.getElementById("registerFeedback");
-let loginForm = document.getElementById("registerForm");
+
+let feedbackLoginPara = document.getElementById("loginFeedback");
+let loginForm = document.getElementById("loginForm");
+
+let loginUsername = document.getElementById("loginUsername");
+let loginPassword = document.getElementById("loginPassword");
 
 
-registerForm.addEventListener("submit", (e) => {
-    let loginUsername = document.getElementById("loginUsername").value;
-    let loginPassword = document.getElementById("loginPassword").value;
+if (loginForm !== null) {
+    loginForm.addEventListener("input", () => {
+        loginUsername.setCustomValidity("");
+        loginPassword.setCustomValidity("");
+    })
 
-    let loginMessages = [];
-
-
-    if (loginMessages.length > 0) {
+    loginForm.addEventListener("submit", (e) => {
         e.preventDefault();
-        feedbackLoginPara.innerHTML = loginMessages.join("<br>");
-    }
 
-    else {
-        
-    }
-});
+        if (loginUsername.value !== localStorage.getItem(loginUsername.value)) {
+            loginUsername.setCustomValidity("The username does not exist.");
+            loginUsername.reportValidity();
+            return;
+        }
+
+        if (loginPassword.value !== localStorage.getItem(loginUsername.value.password)) {
+            loginPassword.setCustomValidity("Incorrect password");
+            loginPassword.reportValidity();
+            return;
+        }
+
+        sessionStorage.setItem("successfullForm", "login");
+        window.location="game.html";
+    });
+}

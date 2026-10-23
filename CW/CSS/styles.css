@@ -45,8 +45,8 @@ input[type="email"] {
     text-shadow: 0px 1px 2px #997404;
 }
 
-input[type="number"] {
-    width: 80px;
+input[type="date"] {
+    width: 160px;
     height: 50px;
     
     background-color: #fee5d1;
@@ -62,7 +62,7 @@ input[type="number"] {
 }
 
 input[type="tel"] {
-    width: 190px;
+    width: 200px;
     height: 50px;
     
     background-color: #fee5d1;
@@ -77,10 +77,23 @@ input[type="tel"] {
     text-shadow: 0px 1px 2px #997404;
 }
 
+input[type="checkbox"] {
+    position: absolute;
+    top: 108%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+
+    accent-color: #713F12;
+    background-color: #fee5d1;
+    border: 4px solid #713F12;
+    border-radius: 8px;
+}
+
 input[type="text"]::placeholder,
 input[type="password"]::placeholder,
 input[type="email"]::placeholder,
-input[type="number"]::placeholder,
+input[type="date"]::placeholder,
 input[type="tel"]::placeholder {
     font-size: 20px;
     color: #713F12;
@@ -140,11 +153,11 @@ div.current_page::before {
 }
 
 div.page::before {
-    background-image: url(../../assets/page_buttons/button_tiger_background.png);
+    background-image: url(../assets/page_buttons/button_tiger_background.png);
 }
 
 div.current_page::before {
-    background-image: url(../../assets/page_buttons/current_button_tiger_background.png)
+    background-image: url(../assets/page_buttons/current_button_tiger_background.png)
 }
 
 div.page:hover::before,
@@ -263,7 +276,7 @@ div.current_page:hover .page_icon {
 #mainContentHome {
     width: 100%;
     height: 880px;
-    background-image: url('../../assets/backgrounds/home_background.png');
+    background-image: url('../assets/backgrounds/home_background.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -301,7 +314,7 @@ div.current_page:hover .page_icon {
 #mainContentLogin {
     width: 100%;
     height: 880px;
-    background-image: url('../../assets/backgrounds/login_background.png');
+    background-image: url('../assets/backgrounds/login_background.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -321,7 +334,6 @@ div.current_page:hover .page_icon {
     margin-top: 10%;
     backdrop-filter: blur(1);
 }
-
 
 #loginHeader {
     position: absolute;
@@ -403,7 +415,7 @@ div.current_page:hover .page_icon {
 #mainContentRegister {
     width: 100%;
     height: 880px;
-    background-image: url('../../assets/backgrounds/register_background.png');
+    background-image: url('../assets/backgrounds/register_background.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -452,33 +464,34 @@ div.current_page:hover .page_icon {
     column-gap: 20px;
 }
 
-#registerFeedback {
+#registerPolicy {
     position: absolute;
-    top: 58%;
-    left: 25%;
-
-    font-family: 'Comic Sans MS', cursive;
-    font-size: 14px;
-    color: #b80505;
-    text-shadow: 0px 2px 3px #713F12;
-    text-shadow: 0px 1px 2px #997404;
+    top: 110%;
+    left: 55%;
+    font-size: 12px;
+    text-align: left;
 }
 
 #registerForm input {
     margin: 10px;
 }
 
-#registerText {
+#registerPasswordSpecifications {
     position: absolute;
     top: 60%;
-    left: 4%;
+    left: 5%;
 
     text-align: left;
     font-family: 'Comic Sans MS', cursive;
-    font-size: 18px;
-    color: #713F12;
-    text-shadow: 0px 2px 3px #713F12;
+    font-size: 14px;
+    color: #711b12;
+    text-shadow: 0px 2px 3px #712d12;
     text-shadow: 0px 1px 2px #997404;
+}
+
+#registerPasswordSpecificationsHeader {
+    font-size: 22px;
+    font-weight: 600px;
 }
 
 #registerButton {
@@ -515,6 +528,7 @@ div.current_page:hover .page_icon {
     position: absolute;
     top: 85%;
     left: 4%;
+
     font-family: 'Comic Sans MS', cursive;
     font-size: 14px;
     font-weight: 300;
@@ -526,16 +540,31 @@ div.current_page:hover .page_icon {
 
 /*   <-- GAME PAGE -->   */
 
+#successfullForm {
+    position: relative;
+    background-color: #02983e;
+    padding: 30px;
+    margin: 0px;
+    border-bottom: 3px solid #472609;
+    text-align: center;
 
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 32px;
+    font-weight: 800;
+    color: #000000;
+    text-shadow: 0px 2px 3px #7aff3d;
+    text-shadow: 0px 1px 2px #5bff32;
+}
 
 #mainContentGame {
     width: 100%;
     height: 880px;
-    background-image: url('../../assets/backgrounds/game_background.png');
+    background-image: url('../assets/backgrounds/game_background.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     display: flex;
+    position: relative;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -550,7 +579,7 @@ div.current_page:hover .page_icon {
 #mainContentLeaderboard {
     width: 100%;
     height: 880px;
-    background-image: url('../../assets/backgrounds/leaderboard_background.png');
+    background-image: url('../assets/backgrounds/leaderboard_background.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -634,28 +663,24 @@ div.current_page:hover .page_icon {
 }   
 
 
-
-/*   <-- GAME PAGE -->   */
-
-
 /*   <-- LEVEL SELECT -->   */
 
 
-#level_select_character {
+#levelSelectCharacter {
     position: absolute;
-    top: 75%;
+    top: 30%;
     right: 1%;
     height: 500px;
 }
 
-#level_select_notepad {
+#levelSelectNotepad {
     position: absolute;
-    top: 35%;
+    top: 3%;
     left: 1%;
 }
 
 
-#level_select {
+#levelSelect {
     position: flex;
 
 }
@@ -669,18 +694,72 @@ div.current_page:hover .page_icon {
 }
 
 
-#level_1 {
-    top: 50%;
+#buttonLevel1 {
+    top: 10%;
     left: 7%;
 }
 
-#level_1_text {
+#textLevel1 {
     top: 55%;
     left: 10%;
 }
 
 
-#level_1_bar_code {
+#barCodeLevel1 {
+    top: 45%;
+    left: 7%;
+    height: 75px;
+    width: 150px;
+}
+
+#buttonLevel2 {
+    top: 20%;
+    left: 7%;
+}
+
+#textLevel2 {
+    top: 55%;
+    left: 10%;
+}
+
+
+#barCodeLevel2 {
+    top: 45%;
+    left: 7%;
+    height: 75px;
+    width: 150px;
+}
+
+#buttonLevel3 {
+    top: 30%;
+    left: 7%;
+}
+
+#textLevel3 {
+    top: 55%;
+    left: 10%;
+}
+
+
+#barCodeLevel3 {
+    top: 45%;
+    left: 7%;
+    height: 75px;
+    width: 150px;
+}
+
+#buttonLevel4 {
+    top: 50%;
+    left: 7%;
+}
+
+#textLevel4 {
+    top: 55%;
+    left: 10%;
+}
+
+
+#barCodeLevel4 {
     top: 45%;
     left: 7%;
     height: 75px;
@@ -688,18 +767,18 @@ div.current_page:hover .page_icon {
 }
 
 
-#level_3 {
+#buttonLevel5 {
     top: 70%;
     left: 7%;
 }
 
-#level_3_text {
+#textLevel5 {
     top: 75%;
     left: 10%;
 }
 
 
-#level_3_bar_code {
+#barCodeLevel5 {
     top: 75%;
     left: 7%;
     height: 75px;
@@ -708,9 +787,154 @@ div.current_page:hover .page_icon {
 
 
 
-/*   <-- LEVEL CANVAS -->   */
+/*   <-- LEVEL PAGE -->   */
+
+#levelScreen {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
 
 canvas {
-    border: 2px solid #000000;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 20px solid transparent;
+    border-image: url("../assets/game/canvas_border.png") 60 round;
+}
+
+
+
+#backToLevelSelect {
+    position: absolute;
+    top: 2%;
+    right: 21.5%;
+
+    background: none;
+    border: none;
+
+    cursor: pointer;
+}
+
+#retryLevel {
+    position: absolute;
+    top: 2%;
+    left: 21.5%;
+    
+    background: none;
+    border: none;
+
+    cursor: pointer;
+}
+
+#backToLevelSelectImage,
+#retryLevelImage {
+    width: 70px;
+}
+
+#inventory {
+    position: absolute;
+    top: 50%;
+    right: 0.5%;
+    width: 325px;
+}
+
+#inventoryImage {
     display: block;
+    width: 325px;
+}
+
+#inventoryItems {
+    position: absolute;
+    top: 61.5%;
+    left: 15%;
+    display: grid;
+    grid-template-columns: repeat(3, 65px);
+    gap: 18px;
+    border: 0px;
+}
+
+#inventoryItems img {
+    height: 65px;
+    width: 65px;
+}
+
+#timer {
+    position: flex;
+    top: 0px;
+    right: 1%;
+    width: 300px;
+}
+
+#timerImage {
+    position: absolute;
+    top: 16.5%;
+    right: 1%;
+    width: 300px;
+}
+
+#time {
+    position: absolute;
+    top: 20%;
+    right: 4%;
+
+    padding: 5px;
+    border: 0px;
+    margin: 0px;    
+
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 55px;
+    font-weight: 1000;
+    color: #8f5b2e;
+    text-shadow: 3px 3px 1px #2f2e2e;
+}
+
+#listedGroceries {
+    position: absolute;
+    top: 50%;
+    left: 1%;
+    transform: translateY(-50%);
+    width: 300px;
+}
+
+#listedGroceriesImage {
+    display: block;
+    width: 300px;
+}
+
+#currentListedGroceries {
+    position: absolute;
+    top: 7.5%;
+    left: 32%;
+    text-align: left;
+    line-height: 70px;
+
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 46px;
+    font-weight: 400;
+    color: #7e4c20;
+    text-shadow: 0px 2px 3px #713F12;
+    text-shadow: 0px 2px 2px #713F12;
+}
+
+.picked {
+    position: relative;
+    text-decoration: line-through;
+    text-decoration-color: #804d20;
+    text-decoration-thickness: 6px;
+}   
+
+.picked::before {
+    content: "";
+    position: absolute;
+    left: -41px;
+    top: 55%;
+    background-image: url(../assets/game/check_mark.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 40px;
+    height: 40px;
+    transform: translateY(-50%);
 }

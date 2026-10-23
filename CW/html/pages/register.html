@@ -7,7 +7,7 @@
         <link rel="icon" href="../../assets/elements/aisle_nine_emoji.png">
         <title>Register Page</title>
         
-        <link rel="stylesheet" href="../CSS/styles.css">
+        <link rel="stylesheet" href="../../CSS/styles.css">
 
         <script src="../../javascript/validation.js" defer></script>
     </head>
@@ -86,20 +86,20 @@
 
                     Username: <input type="text" name="Username" placeholder="Username" id="registerUsername" required> 
 
-                    Age: <input type="number" name="age" placeholder="Age" id="registerAge" min="5" max="100" required>
+                    Date of birth: <input type="date" name="birthDate" id="registerAge" min="1927-01-01" max="2016-01-01" required>
 
                     Email: <input type="email" name="email" placeholder="Email" id="registerEmail" required>
 
-                    Phone Number: <input type="tel" name="phoneNumber" placeholder="+971 12 345 6789" id="registerPhoneNumber" required>
+                    Phone Number: <input type="tel" name="phoneNumber" placeholder="(+971) 00 000 0000" id="registerPhoneNumber" required>
 
                     Password: <input type="password" name="password" placeholder="Password" id="registerPassword" required>
 
                     Confirm Password: <input type="password" name="confirmPassword" placeholder="Confirm password" id="registerConfirmPassword" required>
+
+                    <input type="checkbox" name="policy" required> <span id="registerPolicy">I confirm my details are accurate<br>and agree they are stored locally and used for the leaderboard.</span>
                 </form>
 
-                <p id="registerFeedback"></p>
-
-                <p id="registerText">After registering, <br>your score will be saved, <br>and you can climb the leaderboard!</p>
+                <p id="registerPasswordSpecifications"><span id="registerPasswordSpecificationsHeader">Password Specifications<br></span>The password has to be at least 8 characters long,<br>it must include one number, one lower letter,<br>one upper letter, and one special character.</p>
 
                 <img id="registerButtonBackground" src="../../assets/elements/login_register_button.png" alt="Register Button Background">
                 <button type="submit" form="registerForm" id="registerButton">Register</button>

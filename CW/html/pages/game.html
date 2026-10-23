@@ -6,7 +6,7 @@
 
         <link rel="icon" href="../../assets/elements/aisle_nine_emoji.png">
         <title>Game Page</title>
-        <link rel="stylesheet" href="../CSS/styles.css">
+        <link rel="stylesheet" href="../../CSS/styles.css">
 
         <script src="../../javascript/level_select.js" defer></script>
         <script src="../../javascript/levels.js" defer></script>
@@ -14,6 +14,7 @@
     </head>
 
     <body>
+        <p id="successfullForm" hidden></p>
         <header>
             <div>
                 <img id="logo" src="../../assets/elements/aisle_nine_logo.png" alt="Aisle Nine Logo">
@@ -76,33 +77,67 @@
 
 
         <div id="mainContentGame">
-            <div id="level_select"> 
-            <img id="level_select_character" src="../../assets/characters/game_level_select_character.png" alt="Level Select Frame">
+            <div id="levelSelect"> 
+                <img id="levelSelectCharacter" src="../../assets/characters/game_level_select_character.png" alt="Level Select Frame">
 
-            <img id="level_select_notepad" src="../../assets/game/level_select/game_notepad.png" alt="Level Select Notepad">
+                <img id="levelSelectNotepad" src="../../assets/game/level_select/game_notepad.png" alt="Level Select Notepad">
 
-                <button id="level_1" class="level" data-level="1">
-                    <img id="level_1_bar_code" src="../../assets/game/level_select/barcode_level_1.png" alt="Level 1 Bar Code">
-                    <span id="level_1_text">1</span>
+                <button id="buttonLevel1" class="level" data-level="1">
+                    <img id="barCodeLevel1" src="../../assets/game/level_select/barcode_level_1.png" alt="Level 1 Bar Code">
+                    <span id="textLevel1">1</span>
                 </button>
 
-                <button id="level_3" class="level" data-level="3">
-                    <img id="level_3_bar_code" src="../../assets/game/level_select/barcode_level_3.png" alt="Level 3 Bar Code">
-                    <span id="level_3_text">3</span>
+                <button id="buttonLevel5" class="level" data-level="5">
+                    <img id="barCodeLevel5" src="../../assets/game/level_select/barcode_level_5.png" alt="Level 5 Bar Code">
+                    <span id="textLevel5">5</span>
                 </button>
+
+
+                <button id="buttonLevel2" class="level" data-level="2">
+                    <img id="barCodeLevel2" src="../../assets/game/level_select/barcode_level_1.png" alt="Level 1 Bar Code">
+                    <span id="textLevel5">2</span>
+                </button>
+                <button id="buttonLevel3" class="level" data-level="3">
+                    <img id="barCodeLevel3" src="../../assets/game/level_select/barcode_level_1.png" alt="Level 1 Bar Code">
+                    <span id="textLevel5">3</span>
+                </button>
+                <button id="buttonLevel4" class="level" data-level="4">
+                    <img id="barCodeLevel4" src="../../assets/game/level_select/barcode_level_1.png" alt="Level 1 Bar Code">
+                    <span id="textLevel5">4</span>
+                </button>
+
+                
             </div>
 
-            <div id="level_screen" hidden>
-                <button id="back_to_level_select">
-                    Levels
-                </button>
-
+            <div id="levelScreen" hidden>
                 <canvas id="game_canvas" width="750" height="750">
-
                 </canvas>
 
+                <button id="backToLevelSelect">
+                    <img id="backToLevelSelectImage" src="../../assets/game/back_to_level_select_button.png" alt="Back to Level Select Button">
+                </button>
+
+                <button id="retryLevel">
+                    <img id="retryLevelImage" src="../../assets/game/retry_level_button.png" alt="Retry Level Button">
+                </button>
+
+                <div id="listedGroceries">
+                    <img id="listedGroceriesImage" src="../../assets/game/listed_groceries.png">
+                    <p id="currentListedGroceries"></p>
+                </div>
+
+                <div id="timer">
+                    <img id="timerImage" src="../../assets/game/timer.png" alt="Timer">
+                    <p id="time"></p>
+                </div>
+
+                <div id="inventory">
+                    <img id="inventoryImage" src="../../assets/game/inventory.png" alt="Inventory Image">
+                    <p id="inventoryItems"></p>
+                </div>
+
             </div>
-        </div>
+        </div> 
         
 
         <footer id="footer">

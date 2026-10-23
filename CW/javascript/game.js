@@ -6,23 +6,15 @@
 
 const canvas = document.getElementById("game_canvas");
 
-// Storing the 2D drawing tool in a variable.
-
 const ctx = canvas.getContext("2d");
-
-// Defining the game window size in "px".
 
 const gameSize = 750;
 
-// Defining the maze tile size
-
 let tileSize = 0;
 
-// Defining an empty array map of the maze, for later use with "n" level map in "startGame()" function.
+let currentLevel = 0;
 
 let currentMap = [];
-
-// Defining an empty arrays for later adding the elements for the respective level "n".
 
 let currentBarriers = [];
 
@@ -38,9 +30,15 @@ let pickedGroceries = [];
 
 let inventory = [];
 
-const inventorySize = 2;
+const inventorySize = 3;
 
 const slowSpeedMultiplier = 0.4;
+
+let timerState = "waiting";
+
+let timerStartTime = 0;
+
+let timeElapsed = 0;
 
 // Defining device pixel ratio.
 
@@ -410,6 +408,7 @@ function updateTiger() {
     if (dx !== 0 || dy !== 0) {
         tiger.moving = true;
         tiger.direction = getTigerDirection(dx, dy);
+        startTimer();
     }
     else {
         tiger.moving = false;
@@ -564,6 +563,42 @@ function getElementHitbox(category, row, col) {
     return elementCollisionBox;
 }
 
+function checkPickUps() {
+    const tigerHitbox = getTigerHitbox(tiger.x, tiger.y);
+
+    const currentPickUpItems = {
+        powerups: currentPowerups,
+        groceries: currentGroceries
+    };
+
+    for (const category in currentPickUpItems) {
+        for (const name in currentPickUpItems[category]) {
+            const element = currentPickUpItems[category][name];
+
+            for (let i = element.row.length - 1; i >= 0; i--) {
+                const elementHitbox = getElementHitbox(category, element.row[i], element.col[i]);
+
+                if (detectCollision(tigerHitbox, elementHitbox)) {
+                    if (category === "groceries") {
+                        pickUpGroceryItem(name);
+                        element.row.splice(i, 1);
+                        element.col.splice(i, 1);
+                    }
+                    else {
+                        if (pickUpPowerup(name)) {
+                            element.row.splice(i, 1);
+                            element.col.splice(i, 1);
+                        }
+                    }
+                }
+                else {
+                    continue;
+                }
+            }
+        }
+    }
+}
+
 function resetCrossable() {
     for (const element in currentObstacles) {
         const obstacle = currentObstacles[element];
@@ -643,13 +678,43 @@ function getSpeedMultiplier() {
     return 1
 }
 
+function getFinishHitbox() {
+    const elementSize = 0.2 * tileSize;
+    const n = currentLevel;
+
+    const finish = levels[n]["finish"];
+
+    const finishX = finish.col * tileSize + (tileSize - elementSize) / 2;
+    const finishY = finish.row * tileSize + (tileSize - elementSize) / 2;
+
+    const finishCollisionBox = {
+        x: finishX,
+        y: finishY,
+        width: elementSize,
+        height: elementSize
+    };
+
+    return finishCollisionBox;
+}
+
+
+function isInFinish(tigerHitbox) {
+    const finishHitbox = getFinishHitbox();
+
+    if (pickedGroceries.length === currentGroceryList.length) {
+        if (detectCollision(tigerHitbox, finishHitbox)) {
+            return true;
+        }
+    }
+    return false;
+}
+
 
 
 // ======================================================================================
-//                  Game Elements (Obstacles, power-ups and groceries)
+//             Game Elements (Start, finish, Obstacles, power-ups and groceries)
 // ======================================================================================
 
-// Defining the functional images paths.
 
 const elementImagesPaths = {
     obstacles: "../../assets/game/game_elements/obstacles/",
@@ -661,12 +726,14 @@ const elementImages = {
     obstacles: {
         box: "fallen_boxes.png",
         bananaPeel: "banana_peel.png",
-        angryOldLady: "angry_old_lady.png"
+        angryOldLady: "angry_old_lady.png",
+        spilledLiquid: "spilled_liquid.png"
     },
     powerups: {
         ladder: "ladder.png",
         energyDrink: "energy_drink.png",
-        water: "water.png"
+        water: "water.png",
+        mop: "mop.png"
     },
     groceries: {
         apple: "apple.png",
@@ -705,19 +772,21 @@ const elementHitboxSizes = {
     obstacles: 0.7,
     powerups: 0.8,
     groceries: 0.8
-}
+};
 
 const obstaclesPowerups = {
     box: "ladder",
     bananaPeel: "energyDrink",
-    angryOldLady: "water"
-}
+    angryOldLady: "water",
+    spilledLiquid: "mop"
+};
 
 const obstacleEffect = {
     box: "block",
     bananaPeel: "slow",
-    angryOldLady: "block"
-}
+    angryOldLady: "block",
+    spilledLiquid: "slow"
+};
 
 
 function loadElementImages(whenDone, n) {
@@ -804,6 +873,7 @@ function drawElementImages() {
 function pickUpPowerup(name) {
     if (inventory.length < inventorySize) {
         inventory.push(name);
+        updateInventory();
         return true;
     }
     return false;
@@ -812,47 +882,12 @@ function pickUpPowerup(name) {
 function pickUpGroceryItem(name) {
     if (currentGroceryList.includes(name) && !pickedGroceries.includes(name)) {
         pickedGroceries.push(name);
+        updateListedGroceries();
         return true;
     }
     return false;
 }
 
-
-function checkPickUps() {
-    const tigerHitbox = getTigerHitbox(tiger.x, tiger.y);
-
-    const currentPickUpItems = {
-        powerups: currentPowerups,
-        groceries: currentGroceries
-    };
-
-    for (const category in currentPickUpItems) {
-        for (const name in currentPickUpItems[category]) {
-            const element = currentPickUpItems[category][name];
-
-            for (let i = element.row.length - 1; i >= 0; i--) {
-                const elementHitbox = getElementHitbox(category, element.row[i], element.col[i]);
-
-                if (detectCollision(tigerHitbox, elementHitbox)) {
-                    if (category === "groceries") {
-                        pickUpGroceryItem(name);
-                        element.row.splice(i, 1);
-                        element.col.splice(i, 1);
-                    }
-                    else {
-                        if (pickUpPowerup(name)) {
-                            element.row.splice(i, 1);
-                            element.col.splice(i, 1);
-                        }
-                    }
-                }
-                else {
-                    continue;
-                }
-            }
-        }
-    }
-}
 
 function hasPowerupInInventoryFor(obstacleName) {
     const obstaclePowerup = obstaclesPowerups[obstacleName];
@@ -866,10 +901,148 @@ function makeObstacleWalkable(collision) {
     const matchingPowerup = obstaclesPowerups[collision.name];
     const position = inventory.indexOf(matchingPowerup);
     inventory.splice(position, 1);
+    updateInventory();
 }
 
 
 
+const startFinishPaths = {
+    start: "../../assets/game/game_elements/start.png",
+    finish: "../../assets/game/game_elements/finish.png"
+};
+
+const startFinish = {};
+
+
+function loadStartFinishImages(whenDone) {
+    const total = Object.keys(startFinishPaths).length;
+    let loaded = 0;
+
+    for (const element in startFinishPaths) {
+        let img = new Image();
+
+        img.src = startFinishPaths[element];
+
+        img.onload = () => {
+            loaded++;
+            startFinish[element] = img;
+            
+            if (loaded === total) {
+                whenDone();
+            }
+        };
+
+        img.onerror = () => {
+            loaded++;
+            console.log("The element image FAILED to load: ", img.src);
+
+            if (loaded === total) {
+                whenDone();
+            }
+        };
+    }
+}
+
+function drawStartFinish(n) {
+    const elementSize = 0.9 * tileSize;
+
+    for (const element in startFinish) {
+        const img = startFinish[element];
+        const type = levels[n][element]
+        
+        ctx.drawImage(
+        img,
+        type.col * tileSize + (tileSize - elementSize) / 2, 
+        type.row * tileSize + (tileSize - elementSize) / 2, 
+        elementSize, 
+        elementSize
+        );  
+    }  
+}
+
+function startTimer() {
+    if (!(timerState === "waiting")) {
+        return;
+    }
+
+    timerStartTime = performance.now();
+    timerState = "running";
+}
+
+
+function endTimer() {
+    if (!(timerState === "running")) {
+        return;
+    }
+
+    timeElapsed = performance.now() - timerStartTime;
+    timerState = "stopped";
+}
+
+// ======================================================================================
+//                                   HTML Connection
+// ======================================================================================
+
+const userInventory = document.getElementById("inventoryItems");
+
+function updateInventory() {
+    userInventory.innerHTML = "";
+
+    for (let i = 0; i < inventory.length; i++) {
+        const img = loadedElementImages.powerups[inventory[i]];
+        if (!img) {
+            continue;
+        }
+
+        const copy = img.cloneNode();
+        userInventory.appendChild(copy);
+    }
+}
+
+const userCurrentListedGroceries = document.getElementById("currentListedGroceries");
+
+function updateListedGroceries() {
+    userCurrentListedGroceries.innerHTML = "";
+
+    for (let i = 0; i < currentGroceryList.length; i++) {
+        const grocery = capitalizeFirstLetter(currentGroceryList[i]);
+        if (pickedGroceries.includes(currentGroceryList[i])) {
+            userCurrentListedGroceries.innerHTML += "<span class='picked'>" + grocery + "</span><br>";
+        }
+        else {
+        userCurrentListedGroceries.innerHTML += "<span>" + grocery + "</span><br>";
+        }
+    }
+}
+
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1)
+}
+
+const timerDisplay = document.getElementById("time");
+
+function displayTimer() {
+    if (timerState === "running") {
+        timeElapsed = performance.now() - timerStartTime;
+    }
+
+    timerDisplay.innerHTML = convertTime(timeElapsed);
+}
+
+function convertTime(ms) {
+    const minutes = String(Math.floor(ms / 60000));
+    const seconds = String(Math.floor((ms % 60000) / 1000));
+    const msec = String(Math.floor((ms % 1000) / 100));
+
+    return (minutes.padStart(2, "0") + ":" + seconds.padStart(2, "0") + ":" + msec);
+}
+
+function resetTimer() {
+    timerStartTime = 0;
+    timeElapsed = 0;
+    timerState = "waiting";
+}
 
 // ======================================================================================
 //                                   Game Controls
@@ -887,17 +1060,29 @@ function startGame(n) {
     currentGroceryList = levels[n].listedGroceries;
     pickedGroceries = [];
     inventory = [];
+    updateInventory();
+    updateListedGroceries();
     tileSize = setTileSize(n);
+    currentLevel = n;
     resetCrossable();
+    resetTimer();
     loadStructureImages(() => {
         loadElementImages(() => {
-            setTigerSize(tileSize);
-            generateMaze(currentMap);
-            setTigerStartPosition(n);
-            animate();
+            loadStartFinishImages(() => {
+                setTigerSize(tileSize);
+                generateMaze(currentMap);
+                setTigerStartPosition(n);
+                animate();
+            });
         },
     n);
     });
+}
+
+let endGameFrame = null;
+
+function stopGame() {
+    cancelAnimationFrame(endGameFrame);
 }
 
 function animate() {
@@ -906,12 +1091,17 @@ function animate() {
     drawMaze();
     checkPickUps();
     drawElementImages();
+    drawStartFinish(currentLevel);
     drawTiger();
+    if (isFinished()) {
+        endTimer();
+        displayTimer();
+        return;
+    }
+    displayTimer();
     endGameFrame = requestAnimationFrame(animate);
 }
 
-let endGameFrame = null;
-
-function stopGame() {
-    cancelAnimationFrame(endGameFrame);
+function isFinished() {
+    return isInFinish(getTigerHitbox(tiger.x, tiger.y));
 }
