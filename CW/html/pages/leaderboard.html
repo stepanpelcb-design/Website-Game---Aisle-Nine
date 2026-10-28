@@ -8,6 +8,9 @@
         <title>Leaderboard Page</title>
         
         <link rel="stylesheet" href="../../CSS/styles.css">
+
+        <script src="../../javascript/sessionStorage.js" defer></script>
+        <script src="../../javascript/leaderboard.js" defer></script>
     </head>
 
     <body>
@@ -17,35 +20,40 @@
             </div>
             <nav>
                 <div class="page">
-                    <a class="page_style" href="../index.html">
-                        <img class="page_icon" src="../../assets/page_buttons/button_background.png" alt="Home Icon">
-                        <span class="page_button_text">Home</span>
+                    <a class="pageStyle" href="../index.html">
+                        <img class="pageIcon" src="../../assets/page_buttons/button_background.png" alt="Home Icon">
+                        <span class="pageButtonText">Home</span>
                     </a>
                 
                 </div>
                 <div class="page">
-                    <a class="page_style" href="login.html">
-                        <img class="page_icon" src="../../assets/page_buttons/button_background.png" alt="Login Icon">
-                        <span class="page_button_text">Login</span>
+                    <a class="pageStyle" href="login.html">
+                        <img class="pageIcon" src="../../assets/page_buttons/button_background.png" alt="Login Icon">
+                        <span class="pageButtonText">Login</span>
                     </a>
                 </div>
                 <div class="page">
-                    <a class="page_style" href="register.html">
-                        <img class="page_icon" src="../../assets/page_buttons/button_background.png" alt="Register Icon">
-                        <span class="page_button_text">Register</span>
+                    <a class="pageStyle" href="register.html">
+                        <img class="pageIcon" src="../../assets/page_buttons/button_background.png" alt="Register Icon">
+                        <span class="pageButtonText">Register</span>
                     </a>
                 </div>
                 <div class="page">
                     <a class="page" href="game.html">
-                        <img class="page_icon" src="../../assets/page_buttons/button_background.png" alt="Game Icon">
-                        <span class="page_button_text">Game</span>
+                        <img class="pageIcon" src="../../assets/page_buttons/button_background.png" alt="Game Icon">
+                        <span class="pageButtonText">Game</span>
                     </a>
                 </div>
-                <div class="current_page">
-                    <a id="current_page_style" href="leaderboard.html">
-                        <img class="page_icon" src="../../assets/page_buttons/current_button_background.png" alt="Leaderboard Icon">
-                        <span id="page_button_text_leaderboard">Leaderboard</span>
+                <div class="currentPage">
+                    <a id="currentPageStyle" href="leaderboard.html">
+                        <img class="pageIcon" src="../../assets/page_buttons/current_button_background.png" alt="Leaderboard Icon">
+                        <span id="pageButtonTextLeaderboard">Leaderboard</span>
                     </a>
+                </div>
+                <div id="userIcon">
+                    <img id="userIconImage" src="../../assets/user_icon.png" alt="User Icon">
+                    <a id="usernameIcon" href="login.html">Log in</a>
+                    <button hidden id="usernameIconLogged" onclick="logoutUser()"></button>
                 </div>
             </nav>
         </header>
@@ -54,17 +62,17 @@
         </div>
 
         <div id="belt">
-            <video id="belt_video" autoplay muted loop playsinline aria-hidden="true">
+            <video id="beltVideo" autoplay muted loop playsinline aria-hidden="true">
                 <source src="../../assets/belt_loop_slow_brown.mp4" type="video/mp4">
             </video>
 
-            <div class="belt_text">
-                <span class="belt_text_blur">Move!</span>
-                <span class="belt_text_blur">Pick Up!</span>
-                <span class="belt_text_blur">Avoid!</span>
-                <span class="belt_text_blur">Unlock!</span>
-                <span class="belt_text_blur">Finish!</span>
-                <span class="belt_text_blur">Fast!</span>
+            <div class="beltText">
+                <span class="beltTextBlur">Move!</span>
+                <span class="beltTextBlur">Pick Up!</span>
+                <span class="beltTextBlur">Avoid!</span>
+                <span class="beltTextBlur">Unlock!</span>
+                <span class="beltTextBlur">Finish!</span>
+                <span class="beltTextBlur">Fast!</span>
             </div>
         </div>
 
@@ -75,20 +83,26 @@
         <div id="mainContentLeaderboard">
             <h1 id="mainContentTitle">Climb the leaderboard!</h1>
 
-            <img id="leaderboardBackground" src="../../assets/characters/leaderboard_page_character.png" alt="Leaderboard Background">
+            <div id="leaderboard">
+                <img id="leaderboardBackground" src="../../assets/characters/leaderboard_page_character.png" alt="Leaderboard Background">
 
-            <table>
-                <tr>
-                    <th></th>
-                    <th>Name</th>
-                    <th>Score/Time</th>
-                </tr>
+                <table id="leaderboardTable">
+                    <thead id="leaderboardHeader">
+                        <th>&nbsp;</th>
+                        <th>Username</th>
+                        <th>Completed levels</th>
+                        <th>Best Score</th>
+                    </thead>
+                    <tbody id="tableBody">
+                    </tbody>
+                </table>
 
-                <tr>
-                    <td></td>
-                </tr>
-
-            </table>
+                <div id="notLoggedInLeaderboard">
+                    <p id="notLoggedInLeaderboardContent">Please log in to view the leaderboard.</p>
+                    <a id="leaderboardLoginReference" href="./login.html">Login Page</a>
+                </div>
+            </div>
+        
         </div>
         
 

@@ -8,7 +8,8 @@
         <title>Game Page</title>
         <link rel="stylesheet" href="../../CSS/styles.css">
 
-        <script src="../../javascript/level_select.js" defer></script>
+        <script src="../../javascript/sessionStorage.js" defer></script>
+        <script src="../../javascript/levelSelect.js" defer></script>
         <script src="../../javascript/levels.js" defer></script>
         <script src="../../javascript/game.js" defer></script>
     </head>
@@ -21,35 +22,40 @@
             </div>
             <nav>
                 <div class="page">
-                    <a class="page_style" href="../index.html">
-                        <img class="page_icon" src="../../assets/page_buttons/button_background.png" alt="Home Icon">
-                        <span class="page_button_text">Home</span>
+                    <a class="pageStyle" href="../index.html">
+                        <img class="pageIcon" src="../../assets/page_buttons/button_background.png" alt="Home Icon">
+                        <span class="pageButtonText">Home</span>
                     </a>
                 
                 </div>
                 <div class="page">
-                    <a class="page_style" href="login.html">
-                        <img class="page_icon" src="../../assets/page_buttons/button_background.png" alt="Login Icon">
-                        <span class="page_button_text">Login</span>
+                    <a class="pageStyle" href="login.html">
+                        <img class="pageIcon" src="../../assets/page_buttons/button_background.png" alt="Login Icon">
+                        <span class="pageButtonText">Login</span>
                     </a>
                 </div>
                 <div class="page">
-                    <a class="page_style" href="register.html">
-                        <img class="page_icon" src="../../assets/page_buttons/button_background.png" alt="Register Icon">
-                        <span class="page_button_text">Register</span>
+                    <a class="pageStyle" href="register.html">
+                        <img class="pageIcon" src="../../assets/page_buttons/button_background.png" alt="Register Icon">
+                        <span class="pageButtonText">Register</span>
                     </a>
                 </div>
-                <div class="current_page">
-                    <a id="current_page_style" href="game.html">
-                        <img class="page_icon" src="../../assets/page_buttons/current_button_background.png" alt="Game Icon">
-                        <span class="page_button_text">Game</span>
+                <div class="currentPage">
+                    <a id="currentPageStyle" href="game.html">
+                        <img class="pageIcon" src="../../assets/page_buttons/current_button_background.png" alt="Game Icon">
+                        <span class="pageButtonText">Game</span>
                     </a>
                 </div>
                 <div class="page">
                     <a class="page" href="leaderboard.html">
-                        <img class="page_icon" src="../../assets/page_buttons/button_background.png" alt="Leaderboard Icon">
-                        <span id="page_button_text_leaderboard">Leaderboard</span>
+                        <img class="pageIcon" src="../../assets/page_buttons/button_background.png" alt="Leaderboard Icon">
+                        <span id="pageButtonTextLeaderboard">Leaderboard</span>
                     </a>
+                </div>
+                <div id="userIcon">
+                    <img id="userIconImage" src="../../assets/user_icon.png" alt="User Icon">
+                    <a id="usernameIcon" href="login.html">Log in</a>
+                    <button hidden id="usernameIconLogged" onclick="logoutUser()"></button>
                 </div>
             </nav>
         </header>
@@ -58,17 +64,17 @@
         </div>
 
         <div id="belt">
-            <video id="belt_video" autoplay muted loop playsinline aria-hidden="true">
+            <video id="beltVideo" autoplay muted loop playsinline aria-hidden="true">
                 <source src="../../assets/belt_loop_slow_brown.mp4" type="video/mp4">
             </video>
 
-            <div class="belt_text">
-                <span class="belt_text_blur">Move!</span>
-                <span class="belt_text_blur">Pick Up!</span>
-                <span class="belt_text_blur">Avoid!</span>
-                <span class="belt_text_blur">Unlock!</span>
-                <span class="belt_text_blur">Finish!</span>
-                <span class="belt_text_blur">Fast!</span>
+            <div class="beltText">
+                <span class="beltTextBlur">Move!</span>
+                <span class="beltTextBlur">Pick Up!</span>
+                <span class="beltTextBlur">Avoid!</span>
+                <span class="beltTextBlur">Unlock!</span>
+                <span class="beltTextBlur">Finish!</span>
+                <span class="beltTextBlur">Fast!</span>
             </div>
         </div>
 
@@ -80,31 +86,56 @@
             <div id="levelSelect"> 
                 <img id="levelSelectCharacter" src="../../assets/characters/game_level_select_character.png" alt="Level Select Frame">
 
-                <img id="levelSelectNotepad" src="../../assets/game/level_select/game_notepad.png" alt="Level Select Notepad">
+                <div id="levelSelectNotepad">
+                    <img id="levelSelectNotepadImage" src="../../assets/game/level_select/game_notepad.png" alt="Level Select Notepad">
 
-                <button id="buttonLevel1" class="level" data-level="1">
-                    <img id="barCodeLevel1" src="../../assets/game/level_select/barcode_level_1.png" alt="Level 1 Bar Code">
-                    <span id="textLevel1">1</span>
-                </button>
-
-                <button id="buttonLevel5" class="level" data-level="5">
-                    <img id="barCodeLevel5" src="../../assets/game/level_select/barcode_level_5.png" alt="Level 5 Bar Code">
-                    <span id="textLevel5">5</span>
-                </button>
-
-
-                <button id="buttonLevel2" class="level" data-level="2">
-                    <img id="barCodeLevel2" src="../../assets/game/level_select/barcode_level_1.png" alt="Level 1 Bar Code">
-                    <span id="textLevel5">2</span>
-                </button>
-                <button id="buttonLevel3" class="level" data-level="3">
-                    <img id="barCodeLevel3" src="../../assets/game/level_select/barcode_level_1.png" alt="Level 1 Bar Code">
-                    <span id="textLevel5">3</span>
-                </button>
-                <button id="buttonLevel4" class="level" data-level="4">
-                    <img id="barCodeLevel4" src="../../assets/game/level_select/barcode_level_1.png" alt="Level 1 Bar Code">
-                    <span id="textLevel5">4</span>
-                </button>
+                    <div id="levels">
+                        <div class="levels">
+                            <h class="levelsHeader">Level 1</h>
+                            <p class="levelsDescription">Two groceries and powerups to pick up. <br><br>Difficulty: Easy<br>Obstacles: (banana peel,<br>fallen boxes)<br>Maze size: 10x10<br></p>
+                            <button class="buttonLevels" data-level="1">
+                                <img class="barCodeLevels" src="../../assets/game/level_select/barcode_level1.png" alt="Level 1 Bar Code">
+                                <span class="textLevels">1</span>
+                            </button>
+                        </div>
+                        <div class="levels">
+                            <h class="levelsHeader">Level 2</h>
+                            <p class="levelsDescription">Three groceries and powerups to pick up. <br><br>Difficulty: Easy<br>Obstacles: (banana peel,<br>fallen boxes)<br>Maze size: 12x12<br></p>
+                            <button class="buttonLevels" class="level" data-level="2">
+                                <img class="barCodeLevels" src="../../assets/game/level_select/barcode_level2.png" alt="Level 2 Bar Code">
+                                <span class="textLevels">2</span>
+                            </button>
+                            <img id="level2Lock" src="../../assets/game/level_select/lock.png">
+                        </div>
+                        <div class="levels">
+                            <h class="levelsHeader">Level 3</h>
+                            <p class="levelsDescription">Four groceries and many powerups to pick up. <br><br>Difficulty: Normal<br>Obstacles: (banana peel,<br>fallen boxes, spilled liquid,<br>angry old lady)<br>Maze size: 15x15<br></p>
+                            <button class="buttonLevels" data-level="3">
+                                <img class="barCodeLevels" src="../../assets/game/level_select/barcode_level3.png" alt="Level 3 Bar Code">
+                                <span class="textLevels">3</span>
+                            </button>
+                            <img id="level3Lock" src="../../assets/game/level_select/lock.png">
+                        </div>
+                        <div class="levels">
+                            <h class="levelsHeader">Level 4</h>
+                            <p class="levelsDescription">Five groceries and many powerups to pick up. <br><br>Difficulty: Hard<br>Obstacles: (banana peel,<br>fallen boxes, spilled liquid,<br>angry old lady)<br>Maze size: 18x18<br></p>
+                            <button class="buttonLevels" data-level="4">
+                                <img class="barCodeLevels" src="../../assets/game/level_select/barcode_level4.png" alt="Level 4 Bar Code">
+                                <span class="textLevels">4</span>
+                            </button>
+                            <img id="level4Lock" src="../../assets/game/level_select/lock.png">
+                        </div>
+                        <div class="levels">
+                            <h class="levelsHeader">Level 5</h>
+                            <p class="levelsDescription">Six groceries and many powerups to pick up. <br><br>Difficulty: Hard<br>Obstacles: (banana peel,<br>fallen boxes, spilled liquid,<br>angry old lady)<br>Maze size: 20x20<br></p>
+                            <button class="buttonLevels" data-level="5">
+                                <img class="barCodeLevels" src="../../assets/game/level_select/barcode_level5.png" alt="Level 5 Bar Code">
+                                <span class="textLevels">5</span>
+                            </button>
+                            <img id="level5Lock" src="../../assets/game/level_select/lock.png">
+                        </div>
+                    </div>
+                </div>
 
                 
             </div>
@@ -136,6 +167,16 @@
                     <p id="inventoryItems"></p>
                 </div>
 
+                <div hidden id="levelFinished">
+                    <img id="levelFinishedImage" src="../../assets/game/finished_level.png" alt="Finished Level">
+                    <h1 id="levelFinishedHeader">LEVEL COMPLETED!</h1>
+                    <div id="levelFinishedContent">
+                        <p id="levelFinishedText">Your Time: <span id="finalTime"></span><br>Your Score: <span id="finalScore"></span></p>
+                    </div>
+                    <button id="levelFinishedContinueButton" onclick="continueBackToLevelSelect()">
+                        <img id="levelFinishedContinueImage" src="../../assets/game/continue_button.png" alt="Continue Button">
+                    </button>
+                </div>
             </div>
         </div> 
         

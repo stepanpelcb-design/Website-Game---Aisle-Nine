@@ -45,6 +45,22 @@ input[type="email"] {
     text-shadow: 0px 1px 2px #997404;
 }
 
+input[type="email"] {
+    width: 230px;
+    height: 50px;
+    
+    background-color: #fee5d1;
+    border: 2px solid #713F12;
+    border-radius: 25px;
+
+    padding-left: 3%;
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 18px;
+    color: #713F12;
+    text-shadow: 0px 2px 3px #713F12;
+    text-shadow: 0px 1px 2px #997404;
+}
+
 input[type="date"] {
     width: 160px;
     height: 50px;
@@ -85,7 +101,6 @@ input[type="checkbox"] {
     height: 20px;
 
     accent-color: #713F12;
-    background-color: #fee5d1;
     border: 4px solid #713F12;
     border-radius: 8px;
 }
@@ -121,23 +136,23 @@ nav {
 }
 
 div.page, 
-div.current_page {
+div.currentPage {
     position: relative;
     transition: transform 0.2s ease;
 }
 
 div.page:hover,
-div.current_page:hover {
+div.currentPage:hover {
     transform: scale(1.2);
 }
 
 div.page:active,
-div.current_page:active {
+div.currentPage:active {
     transform: scale(0.88)
 }
 
 div.page::before,
-div.current_page::before {
+div.currentPage::before {
     content: '';
     position: absolute;
     top: 0;
@@ -156,21 +171,21 @@ div.page::before {
     background-image: url(../assets/page_buttons/button_tiger_background.png);
 }
 
-div.current_page::before {
+div.currentPage::before {
     background-image: url(../assets/page_buttons/current_button_tiger_background.png)
 }
 
 div.page:hover::before,
-div.current_page:hover::before {
+div.currentPage:hover::before {
     opacity: 1;
 }
 
-div.page:hover .page_icon,
-div.current_page:hover .page_icon {
+div.page:hover .pageIcon,
+div.currentPage:hover .pageIcon {
     opacity: 0;
 }
 
-.page_icon {
+.pageIcon {
     width: 120px;
     height: 120px;
     position: flex;
@@ -179,7 +194,7 @@ div.current_page:hover .page_icon {
 }
 
 
-.page_button_text {
+.pageButtonText {
     position: absolute;
     top: -100%;
     left: 50%;
@@ -192,7 +207,7 @@ div.current_page:hover .page_icon {
     text-shadow: 0px 1px 1px #000000;
 }
 
-#page_button_text_leaderboard {
+#pageButtonTextLeaderboard {
     position: absolute;
     top: -100%;
     left: 50%;
@@ -203,6 +218,48 @@ div.current_page:hover .page_icon {
     font-weight: 600;
     color: #000000;
     text-shadow: 0px 1px 1px #000000;
+}
+
+#userIcon {
+    position: absolute;
+    top: 50%;
+    right: 5%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+#userIconImage {
+    width: 60px;
+}
+
+#usernameIcon {
+    padding: 2px;
+    border: 0px;
+    margin: 0px;
+
+    font-family: 'Times New Roman', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    color: #000000;
+    text-decoration: underline;
+}
+
+#usernameIconLogged {
+    background: transparent;
+    cursor: pointer;
+
+    padding: 2px;
+    border: 0px;
+    margin: 0px;
+
+    font-family: 'Times New Roman', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    color: #000000;
+    text-decoration: underline;
 }
 
 #belt {
@@ -216,7 +273,7 @@ div.current_page:hover .page_icon {
     align-items: center;
 }
 
-#belt_video {
+#beltVideo {
     position: absolute;
     top: 0;
     left: 0;
@@ -226,7 +283,7 @@ div.current_page:hover .page_icon {
     z-index: -1;
 }
 
-.belt_text {
+.beltText {
     width: 100%;
     display: flex;
     position: relative;
@@ -241,7 +298,7 @@ div.current_page:hover .page_icon {
     gap: 5%;
 }
 
-.belt_text_blur {
+.beltTextBlur {
     margin: 0;
     padding: 0;
     border: none;
@@ -289,19 +346,18 @@ div.current_page:hover .page_icon {
 }
 
 #homeInstructions {
-    width: 500px;
-    height: 500px;
     position: absolute;
-    top: 20%;
-    left: 15%;
+    top: 12%;
+    left: 2%;
+    height: 750px;
 }
 
 #homeCharacter {
     width: auto;
     height: auto;
     position: absolute;
-    top: 30%;
-    right: 15%;
+    top: 35%;
+    right: 5%;
     backdrop-filter: blur(1px)
 }
 
@@ -591,11 +647,93 @@ div.current_page:hover .page_icon {
     text-align: center;
 }
 
+#leaderboard {
+    position: flex;
+
+    font-family: 'Comic Sans MS', cursive;
+    color: #713F12;
+    text-shadow: 0px 2px 3px #713F12;
+    text-shadow: 0px 1px 2px #997404;
+}
+
 #leaderboardBackground {
     position: absolute;
     top: 10%;
-    left: 20%;
+    left: 10%;
+    height: 800px;
 }
+
+#leaderboardTable {
+    position: absolute;
+    top: 23%;
+    left: 26%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+
+#leaderboardTable td {
+    padding: 10px 28px;
+    border-bottom: rgb(126, 76, 32, 0.1) solid;
+}
+
+#leaderboardTable th {
+    padding: 20px 30px
+}
+
+
+#leaderboardHeader {
+    font-size: 20px;
+    font-weight: 1000;
+    border-bottom: rgb(126, 76, 32, 0.8) solid;
+}
+
+#tableBody {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+
+#notLoggedInLeaderboard {
+    position: absolute;
+    top: 25%;
+    left: 26%;
+    width: 650px;
+    height: 600px;
+
+    justify-content: center;
+    text-align: center;
+
+    background-color: rgba(75, 57, 2, 0.2);
+    border-radius: 30px;
+    backdrop-filter: blur(5px);
+}
+
+#notLoggedInLeaderboardContent {
+    position: absolute;
+    top: 10%;
+    
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 50px;
+    font-weight: 800;
+    color: #713F12;
+    text-shadow: 0px 4px 2px #ffffff;
+}
+
+#leaderboardLoginReference {
+    position: absolute;
+    top: 50%;
+    left: 35%;
+
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 40px;
+    font-weight: 600;
+    color: #713F12;
+    text-shadow: 0px 2px 2px #ffffff;
+    text-decoration: underline;
+}
+
+
 
 
 
@@ -675,114 +813,118 @@ div.current_page:hover .page_icon {
 
 #levelSelectNotepad {
     position: absolute;
-    top: 3%;
-    left: 1%;
+    top: 50%;
+    left: 0px;
+    transform: translateY(-50%);
 }
 
 
 #levelSelect {
-    position: flex;
-
+    position: absolute;
+    top: 5%;
+    left: 2%;
+    width: 98%;
+    height: 88%;
 }
 
-.level {
+#levels {
     position: absolute;
+    top: 2%;
+    left: 3%;
+    width: 94%;
+    height: 94%;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    column-gap: 12%;
+    row-gap: 0px;
+    grid-auto-flow: column;
+}
+
+/*   <-- LEVEL 1 -->   */
+
+.levels {
+    position: relative;
+}
+
+.levelsHeader {
+    position: relative;
+    display: flex;
+    text-align: left;
+    padding: 0px;
+    border: 0px;
+    margin-bottom: 3px;
+
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 40px;
+    font-weight: 600;
+    color: #713F12;
+    text-shadow: 0px 2px 3px #713F12;
+    text-shadow: 0px 1px 2px #997404;
+    text-decoration: underline;
+}
+
+.levelsDescription {
+    position: relative;
+    display: flex;
+    text-align: left;
+    padding: 0px;
+    border: 0px;
+    margin: 2px;
+    line-height: 25px;
+
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 16px;
+    font-weight: 400;
+    color: #713F12;
+    text-shadow: 0px 2px 3px #713F12;
+    text-shadow: 0px 1px 2px #997404;
+}
+
+.buttonLevels {
+    position: absolute;
+    bottom: 0px;
+    right: 1%;
+    padding: 0px;
+    border: 0px;
+    margin: 0px;
     width: 150px;
     background: none;
     border: none;
     cursor: pointer;
 }
 
+.textLevels {
+    padding-bottom: 5px;
+    border: 0px;
+    margin: 0px;
 
-#buttonLevel1 {
-    top: 10%;
-    left: 7%;
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 20px;
+    font-weight: 400;
+    color: #000000;
+    text-shadow: 0px 2px 3px #713F12;
+    text-shadow: 0px 1px 2px #997404;
 }
 
-#textLevel1 {
-    top: 55%;
-    left: 10%;
-}
-
-
-#barCodeLevel1 {
-    top: 45%;
-    left: 7%;
+.barCodeLevels {
     height: 75px;
-    width: 150px;
 }
 
-#buttonLevel2 {
-    top: 20%;
-    left: 7%;
-}
-
-#textLevel2 {
-    top: 55%;
-    left: 10%;
-}
-
-
-#barCodeLevel2 {
-    top: 45%;
-    left: 7%;
-    height: 75px;
-    width: 150px;
-}
-
-#buttonLevel3 {
-    top: 30%;
-    left: 7%;
-}
-
-#textLevel3 {
-    top: 55%;
-    left: 10%;
-}
-
-
-#barCodeLevel3 {
-    top: 45%;
-    left: 7%;
-    height: 75px;
-    width: 150px;
-}
-
-#buttonLevel4 {
-    top: 50%;
-    left: 7%;
-}
-
-#textLevel4 {
-    top: 55%;
-    left: 10%;
-}
-
-
-#barCodeLevel4 {
-    top: 45%;
-    left: 7%;
-    height: 75px;
-    width: 150px;
-}
-
-
-#buttonLevel5 {
-    top: 70%;
-    left: 7%;
-}
-
-#textLevel5 {
-    top: 75%;
-    left: 10%;
-}
-
-
-#barCodeLevel5 {
-    top: 75%;
-    left: 7%;
-    height: 75px;
-    width: 150px;
+#level2Lock,
+#level3Lock,
+#level4Lock,
+#level5Lock {
+    position: absolute;
+    top: -1%;
+    left: -2%;
+    width: 104%;
+    height: 102%;
+    border-radius: 20px;
+    object-fit: none;
+    object-position: center;
+    backdrop-filter: blur(7px);
 }
 
 
@@ -905,13 +1047,13 @@ canvas {
 
 #currentListedGroceries {
     position: absolute;
-    top: 7.5%;
+    top: 9%;
     left: 32%;
     text-align: left;
     line-height: 70px;
 
     font-family: 'Comic Sans MS', cursive;
-    font-size: 46px;
+    font-size: 40px;
     font-weight: 400;
     color: #7e4c20;
     text-shadow: 0px 2px 3px #713F12;
@@ -937,4 +1079,84 @@ canvas {
     width: 40px;
     height: 40px;
     transform: translateY(-50%);
+}
+
+
+#levelFinished {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    backdrop-filter: blur(5px);
+    background-color: rgb(0, 0, 0, 0.2);
+}
+
+#levelFinishedImage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 900px;
+}
+
+#levelFinishedHeader {
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 60px;
+    font-weight: 800;
+    color: #7e4c20;
+    text-shadow: 0px 2px 2px #000000;
+    text-decoration: wavy;
+}
+
+#levelFinishedContent {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    line-height: 3;
+    text-align: left;
+
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 40px;
+    font-weight: 200;
+    color: #9b612e;
+    text-shadow: 0px 2px 2px #000000;
+}
+
+#finalTime,
+#finalScore {
+    padding-left: 150px;
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 50px;
+    font-weight: 600;
+    color: #9b612e;
+    text-shadow: 0px 2px 2px #000000;
+}
+
+#levelFinishedContinueButton {
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    background: none;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    cursor: pointer;
+}
+
+#levelFinishedContinueImage {
+    display: block;
+    width: 350px;
 }
