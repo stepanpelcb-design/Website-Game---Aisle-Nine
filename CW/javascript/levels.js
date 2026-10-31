@@ -1,8 +1,8 @@
 "use strict";
 
-// All levels structure, maps, positions of obstacles, powerups, and groceries.
+// All levels structure, maps, listed items, positions of obstacles, powerups, and groceries.
 
-const levels = {
+export const levels = {
     1: {
         start: {row: 8, col: 9},
 
@@ -166,7 +166,7 @@ const levels = {
             ladder: {row: [1, 8, 8, 9, 11, 14], col: [4, 1, 6, 16, 8, 4]},
             energyDrink: {row: [9, 10, 13], col: [1, 10, 3]},
             water: {row: [1, 1, 6, 7, 11, 14], col: [1, 16, 6, 16, 4, 16]},
-            mop: {row: [1, 3, 3, 10, 14], col: [2, 6, 16, 16, 10]}
+            mop: {row: [3, 3, 3, 10, 14], col: [2, 6, 16, 16, 10]}
         },
 
         groceries: {
@@ -269,6 +269,68 @@ const levels = {
             "#.SSS.S.SSS.S.SSSS.#",
             "#...S.......S....S.#",
             "###.################"
+        ]
+    },
+    6: {
+        start: {row: 23, col: 11},
+        finish: {row: 6, col: 0},
+        barriers: ["#", "S"],
+        obstacles: {
+            box: {row: [5, 15, 15, 18, 20, 20], col: [7, 3, 10, 9, 7, 22]},
+            bananaPeel: {row: [1, 1, 2, 3, 5, 6, 7, 9, 9, 9, 11, 12, 14, 14, 17, 18, 20, 22, 22], col: [5, 20, 12, 19, 8, 14, 2, 9, 12, 21, 7, 20, 1, 14, 6, 22, 3, 6, 21]},
+            angryOldLady: {row: [4, 5, 8, 17, 17, 20], col: [16, 5, 8, 1, 18, 5]},
+            spilledLiquid: {row: [1, 1, 2, 2, 5, 5, 7, 7, 12, 13, 13, 14, 16, 19, 19, 20, 21, 22], col: [8, 16, 1, 22, 3, 16, 20, 22, 13, 3, 9, 16, 15, 13, 19, 9, 11, 3]}
+        },
+        powerups: {
+            ladder: {row: [1, 3, 7, 10, 11, 11, 19, 22], col: [11, 3, 18, 13, 1, 22, 14, 13]},
+            energyDrink: {row: [1, 1, 9, 9, 15, 16, 17], col: [9, 18, 4, 10, 9, 19, 3]},
+            water: {row: [1, 3, 10, 11, 19, 22], col: [4, 8, 17, 11, 16, 1]},
+            mop: {row: [4, 5, 12, 13, 13, 17, 19, 21], col: [1, 22, 17, 6, 22, 9, 1, 15]}
+        },
+        groceries: {
+            apple: {row: [1], col: [2]},
+            beans: {row: [22], col: [4]},
+            bread: {row: [22], col: [9]},
+            butter: {row: [3], col: [10]},
+            carrot: {row: [15], col: [8]},
+            cereal: {row: [5], col: [20]},
+            cheese: {row: [5], col: [18]},
+            eggs: {row: [3], col: [5]},
+            grapes: {row: [5], col: [10]},
+            milk: {row: [10], col: [15]},
+            onion: {row: [21], col: [20]},
+            orange: {row: [15], col: [22]},
+            pasta: {row: [22], col: [17]},
+            pepper: {row: [11], col: [5]},
+            tomatto: {row: [15], col: [6]},
+            yoghurt: {row: [16], col: [13]}
+        },
+        listedGroceries: ["bread", "eggs", "butter", "onion", "carrot", "cheese"],
+        map: [
+            "########################",
+            "#............S.........#",
+            "#.SSSSSSSSSS.S.SSSSSSS.#",
+            "#.S.S.S....S.S.S.....S.#",
+            "#.S.S.S.SSSS.S.S.SSS.S.#",
+            "#.S.S.S..S.S.S.S...S.S.#",
+            "..S.S.SS.S...S.SSSSS.S.#",
+            "#......S.S.S.S.......S.#",
+            "#.SSSS.S.S.S.SSSSSSSSS.#",
+            "#....S.....S...........#",
+            "#S.S.SSSSSSSS.S.S.S.SSS#",
+            "#..S........SSSSSSS.S..#",
+            "#.SSSSSSS.S.......S...S#",
+            "#.........S.SSSS.SS.S..#",
+            "#.S.S.SSSSS.S....S..SS.#",
+            "#.S.S..S....S.SSSSSSS..#",
+            "#.S.S.SSSSS.S.S...S.S.S#",
+            "#.S.S.....S.S...S......#",
+            "#.S.S.S.S.S.SSSSSSSSSS.#",
+            "#.S.S.S.S.S....S.S.....#",
+            "#.S.S.S.S.S.SSSS.S.SSS.#",
+            "#.S.S.S.S.S.S....S.S.S.#",
+            "#.........S.S.SS...S...#",
+            "###########.############"
         ]
     },
 };

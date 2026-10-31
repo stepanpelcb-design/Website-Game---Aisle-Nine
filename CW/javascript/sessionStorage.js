@@ -1,48 +1,64 @@
 "use strict";
 
-const userDisplay = document.getElementById("usernameIcon");
-const userDisplayLogged = document.getElementById("usernameIconLogged");
-const loggedInUser = sessionStorage.getItem("loggedInUser");
+// =============
+//    Imports
+// =============
+
+import { getCurrentUsername, getCurrentScore, logoutUser } from "../javascript/users.js";
+
+
+// HTML tags.
+
+const userDetailBox = document.getElementById("userDetails");
+const userDetailsName = document.getElementById("loggedUser");
+const userDetailsStats = document.getElementById("loggedUserStats");
+const userIconButton = document.getElementById("userIcon");
+const logoutButton = document.getElementById("logoutUser");
+const userIconText = document.getElementById("userIconText");
+const userNotLoggedIn = document.getElementById("notLoggedInText");
+
+userIconButton.addEventListener("click", toggleUserDetails);
+logoutButton.addEventListener("click", logoutUser);
+
+isLoggedIn();
 
 /** Updates the username tag inside the header, based on the log in/out state.
  */
-function updateUsername() {
-    if (userDisplay === null) {
+function isLoggedIn() {
+    const user = getCurrentUsername();
+    if (user === null) {
         return;
     }
-    if (loggedInUser === null) {
-        userDisplay.hidden = false;
-        userDisplayLogged.hidden = true;
-    }
-    else {
-        userDisplayLogged.innerHTML = loggedInUser + " ⍈";
-        userDisplay.hidden = true;
-        userDisplayLogged.hidden = false;
-    }
+    userIconText.innerHTML = user.username;
 }
 
-/** Removes the user from session state.
+/** Shows/hides the character select window, if the user is logged in.
+ *  Otherwise, tells the user to log in.
  */
-function logoutUser() {
-    sessionStorage.removeItem("loggedInUser");
-    window.location.reload();
-}
+function toggleUserDetails() {
+    const user = getCurrentUsername();
 
-updateUsername();
-
-/** updates the unlocked levels inside local storage for current user.
- */
-function updateUnlockedLevels(finishedLevel) {
-    const username = getCurrentUsername();
-    if (username === null) {
+    // User not logged in.
+    if (user === null) {
+        userNotLoggedIn.hidden = false;
+        setTimeout(() => {
+        userNotLoggedIn.hidden = true;
+        }, 3000);
         return;
     }
-    const current = username.unlockedLevel;
-    const next = finishedLevel + 1;
 
-    if (next > 5 || next <= current) {
+    // Hide character select window.
+    if (!userDetailBox.hidden) {
+        userIconButton.style.top = "50%";
+        userDetailBox.hidden = true;
+        userIconText.hidden = false;
         return;
     }
-    username.unlockedLevel = next;
-    localStorage.setItem(username.username, JSON.stringify(username));
+
+    // Show character select window.
+    userIconButton.style.top = "40%";
+    userDetailsName.innerHTML = user.username
+    userDetailsStats.innerHTML = "Score: " + getCurrentScore() + "<br>" + "Level: " + user.unlockedLevel;
+    userDetailBox.hidden = false;
+    userIconText.hidden = true;
 }

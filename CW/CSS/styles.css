@@ -1,4 +1,42 @@
-/*   <-- Tag Styles -->   */
+body {
+    margin: 0;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+/*   <-- Header -->   */
+
+header {
+    position: relative;
+}
+
+#logo {
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    width: 150px;
+    height: 150px;
+    transform: translateY(-50%);
+    align-items: center;
+}
+
+/* Nav */
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 150px;
+    gap: 5%;
+    
+    background-color: #b58d55;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
 
 a {
     font-family: Arial, sans-serif;
@@ -8,24 +46,440 @@ a {
     position: relative;
 }
 
-header {
+/* Nav buttons */
+
+div.page, 
+div.currentPage {
     position: relative;
+    transition: transform 0.2s ease;
 }
 
-#logo {
+div.page:hover,
+div.currentPage:hover {
+    transform: scale(1.2);
+}
+
+div.page:active,
+div.currentPage:active {
+    transform: scale(0.88)
+}
+
+div.page::before,
+div.currentPage::before {
+    content: "";
     position: absolute;
+    top: 0;
+    left: 0;
+    width: 120px;
+    height: 120px;
+
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease; 
+}
+
+div.page::before {
+    background-image: url(../assets/page_buttons/button_tiger_background.png);
+}
+
+div.currentPage::before {
+    background-image: url(../assets/page_buttons/current_button_tiger_background.png)
+}
+
+div.page:hover::before,
+div.currentPage:hover::before {
+    opacity: 1;
+}
+
+div.page:hover .pageIcon,
+div.currentPage:hover .pageIcon {
+    opacity: 0;
+}
+
+.pageIcon {
+    width: 120px;
+    height: 120px;
+    position: flex;
     align-items: center;
-    width: 150px;
-    height: 150px;
+    transition: opacity 0.15s ease;
+}
+
+
+.pageButtonText {
+    position: absolute;
+    top: -100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif, sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: #000000;
+    text-shadow: 0px 1px 1px #000000;
+}
+
+#pageButtonTextLeaderboard {
+    position: absolute;
+    top: -100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #000000;
+    text-shadow: 0px 1px 1px #000000;
+}
+
+
+/* <-- User details -->*/
+
+
+/* User icon */ 
+
+#userIcon {
+    position: absolute;
     top: 50%;
+    right: 3.5%;
+    transform: translateY(-50%);
+
+    background: none;
+    border: none;
+    content: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+#userIconImage {
+    width: 60px;
+}
+
+#userIconText {
+    padding: 2px;
+    border: 0px;
+    margin: 0px;
+
+    font-family: 'Times New Roman', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    color: #000000;
+}
+
+#notLoggedInText {
+    position: absolute;
+    top: 5%;
+    right: 2%;
+    transform: rotate(30deg);
+
+    font-family: 'Times New Roman', sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    color: #000000;
+    text-shadow: 0px 0.5px 0.5px #be1616;
+}
+
+/* User card */
+
+#userDetails {
+    position: absolute;
+    top: 50%;
+    right: 2%;
+    transform: translateY(-50%);
+    width: 350px;
+    height: 120px;
+
+    background-color: #a86e33;
+    border-radius: 20px;
+    box-shadow: 4px 4px 4px #000000;
+}
+
+#loggedUser {
+    position: absolute;
+    top: 3%;
     left: 5%;
-    transform: translateY(-50%)
+
+    padding: 5px;
+    border: 0px;
+    margin: 0px;
+
+    font-family: 'Times New Roman', sans-serif;
+    font-size: 30px;
+    font-weight: 800;
+    color: #000000;
+    text-shadow: 0px 1px 1px #b1aeae;
+}
+
+#loggedUserStats {
+    position: absolute;
+    top: 35%;
+    left: 5%;
+
+    padding: 5px;
+    border: 0px;
+    margin: 0px;
+    line-height: 35px;
+    word-spacing: 30px;
+
+    font-family: 'Times New Roman', sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+    color: #000000;
+    text-shadow: 0px 0.5px 1px #b1aeae;
+}
+
+#logoutUser {
+    position: absolute;
+    top: 68%;
+    left: 70%;
+
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    font-family: 'Times New Roman', sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+    color: #000000;
+    text-decoration: underline;
+    text-shadow: 0px 0.5px 1px #b1aeae;
+}
+
+#characterButton {
+    position: absolute;
+    top: 5%;
+    right: 30%;
+
+    background-color: #ba7539;
+    border: solid 1px;
+    cursor: pointer;
+
+    font-family: 'Times New Roman', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    color: #000000;
+    box-shadow: 2px 2px;
+}
+
+/* Character select */
+
+#characterSelect {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 300px;
+    z-index: 999;
+    
+    background-image: url("../assets/characters/notepad_character_select.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto;
+}
+
+#characterHeading {
+    position: absolute;
+    top: 1%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 24px;
+    color: #713F12;
+    text-shadow: 0px 2px 3px #713F12;
+    text-shadow: 0px 1px 2px #997404;
+}
+
+#characterList {
+    position: absolute;
+    top: 30%;
+    left: 7%;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+}   
+
+.character {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    gap: 8px;
+    padding: 0px;
+
+    background: none;
+    border: 2px solid transparent;
+    cursor: pointer;
+}
+
+.selectedCharacter {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    gap: 8px;
+    padding: 0px;
+
+    background: none;
+    background-color: rgba(113, 63, 18, 0.15);
+    border: 1px solid transparent;
+    border-color: #713F12;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+.tigerImage {
+    height: 100px;
+}
+
+.characterName {
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 18px;
+    font-weight: 100;
+    color: #713F12;
+    text-shadow: 0px 2px 3px #713F12;
+    text-shadow: 0px 1px 2px #997404;
+}
+
+#characterSelectExit {
+    position: absolute;
+    top: -5%;
+    right: -2%;
+    cursor: pointer;
+
+    background: none;
+    border: none;
+}
+
+#characterSelectExitImage {
+    width: 50px;
 }
 
 
-body {
+/*   <-- Belt divider -->   */
+
+
+#belt {
+    position: relative;
+    width: 100%;
+    height: 75px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#beltVideo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+
+    object-fit: cover;
+    z-index: -1;
+}
+
+.beltText {
+    width: 100%;
+    display: flex;
+    position: relative;
+
+    justify-content: center;
+    text-align: center;
+    gap: 5%;
+
+    font-family: Inter, sans-serif cursive;
+    font-size: 50px;
+    font-weight: 800;
+    color: #ffffff;
+    text-shadow: 2px 2px 2px #000000;
+    text-shadow: 3px 3px 0px #000000;
+}
+
+.beltTextBlur {
     margin: 0;
+    padding: 0;
+    border: none;
+    backdrop-filter: blur(2px);
 }
+
+#divider {
+    width: 100%;
+    height: 5px;
+    background-color: #614723;
+}
+
+
+/*   <-- Main Content -->   */
+
+
+#mainContentTitle {
+    position: absolute;
+    top: 1%;
+    left: 2%;
+    margin-top: 10px;
+
+    font-family: Inter, sans-serif cursive;
+    font-size: 80px;
+    font-weight: 1000;
+    color: #ffffff;
+    text-shadow: 3px 3px 1px #000000;
+    text-shadow: 2px 2px 10px #000000;
+    backdrop-filter: blur(2px);
+}
+
+
+/*   <-- HOME PAGE -->   */
+
+
+#mainContentHome {
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 880px;
+
+    background-image: url('../assets/backgrounds/home_background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#homeInstructions {
+    position: absolute;
+    top: 12%;
+    left: 2%;
+    height: 750px;
+}
+
+#homeCharacter {
+    position: absolute;
+    top: 35%;
+    right: 5%;
+    width: auto;
+    height: auto;
+
+    backdrop-filter: blur(1px)
+}
+
+
+/*   <-- Inputs -->   */
+
 
 input[type="text"],
 input[type="password"],
@@ -115,267 +569,26 @@ input[type="tel"]::placeholder {
     opacity: 0.4;
 }
 
-
-[hidden] {
-    display: none !important;
+.loggedIn #navLogin,
+.loggedIn #navRegister {
+    display: none;
 }
-
-/*   <-- Nav Styles -->   */
-
-nav {
-    width: 100%;
-    height: 150px;
-    background-color: #b58d55;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5%;
-}
-
-div.page, 
-div.currentPage {
-    position: relative;
-    transition: transform 0.2s ease;
-}
-
-div.page:hover,
-div.currentPage:hover {
-    transform: scale(1.2);
-}
-
-div.page:active,
-div.currentPage:active {
-    transform: scale(0.88)
-}
-
-div.page::before,
-div.currentPage::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 120px;
-    height: 120px;
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.15s ease; 
-}
-
-div.page::before {
-    background-image: url(../assets/page_buttons/button_tiger_background.png);
-}
-
-div.currentPage::before {
-    background-image: url(../assets/page_buttons/current_button_tiger_background.png)
-}
-
-div.page:hover::before,
-div.currentPage:hover::before {
-    opacity: 1;
-}
-
-div.page:hover .pageIcon,
-div.currentPage:hover .pageIcon {
-    opacity: 0;
-}
-
-.pageIcon {
-    width: 120px;
-    height: 120px;
-    position: flex;
-    align-items: center;
-    transition: opacity 0.15s ease;
-}
-
-
-.pageButtonText {
-    position: absolute;
-    top: -100%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    font-family: 'Times New Roman', Times, serif, sans-serif;
-    font-size: 24px;
-    font-weight: 600;
-    color: #000000;
-    text-shadow: 0px 1px 1px #000000;
-}
-
-#pageButtonTextLeaderboard {
-    position: absolute;
-    top: -100%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    font-family: 'Times New Roman', Times, serif, sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    color: #000000;
-    text-shadow: 0px 1px 1px #000000;
-}
-
-#userIcon {
-    position: absolute;
-    top: 50%;
-    right: 5%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-#userIconImage {
-    width: 60px;
-}
-
-#usernameIcon {
-    padding: 2px;
-    border: 0px;
-    margin: 0px;
-
-    font-family: 'Times New Roman', sans-serif;
-    font-size: 18px;
-    font-weight: 800;
-    color: #000000;
-    text-decoration: underline;
-}
-
-#usernameIconLogged {
-    background: transparent;
-    cursor: pointer;
-
-    padding: 2px;
-    border: 0px;
-    margin: 0px;
-
-    font-family: 'Times New Roman', sans-serif;
-    font-size: 18px;
-    font-weight: 800;
-    color: #000000;
-    text-decoration: underline;
-}
-
-#belt {
-    position: relative;
-    isolation: isolate;
-    width: 100%;
-    height: 75px;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#beltVideo {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 80px;
-    object-fit: cover;
-    z-index: -1;
-}
-
-.beltText {
-    width: 100%;
-    display: flex;
-    position: relative;
-    justify-content: center;
-    text-align: center;
-    font-family: Inter, sans-serif cursive;
-    font-size: 50px;
-    font-weight: 800;
-    color: #ffffff;
-    text-shadow: 2px 2px 2px #000000;
-    text-shadow: 3px 3px 0px #000000;
-    gap: 5%;
-}
-
-.beltTextBlur {
-    margin: 0;
-    padding: 0;
-    border: none;
-    backdrop-filter: blur(2px);
-}
-
-#divider {
-    width: 100%;
-    height: 5px;
-    background-color: #614723;
-}
-
-/*   <-- Main Content Styles -->   */
-
-
-#mainContentTitle {
-    position: absolute;
-    top: 1%;
-    left: 2%;
-    margin-top: 10px;
-    font-family: Inter, sans-serif cursive;
-    font-size: 80px;
-    font-weight: 1000;
-    color: #ffffff;
-    text-shadow: 3px 3px 1px #000000;
-    text-shadow: 2px 2px 10px #000000;
-    backdrop-filter: blur(2px);
-}
-
-/*   <-- HOME PAGE -->   */
-
-#mainContentHome {
-    width: 100%;
-    height: 880px;
-    background-image: url('../assets/backgrounds/home_background.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: flex;
-    position: relative;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-#homeInstructions {
-    position: absolute;
-    top: 12%;
-    left: 2%;
-    height: 750px;
-}
-
-#homeCharacter {
-    width: auto;
-    height: auto;
-    position: absolute;
-    top: 35%;
-    right: 5%;
-    backdrop-filter: blur(1px)
-}
-
 
 
 /*   <-- LOGIN PAGE -->   */
 
 
-
 #mainContentLogin {
+    display: flex;
+    position: relative;
     width: 100%;
     height: 880px;
+
     background-image: url('../assets/backgrounds/login_background.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    display: flex;
-    position: relative;
+
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -395,6 +608,7 @@ div.currentPage:hover .pageIcon {
     position: absolute;
     top: 24%;
     left:48%;
+
     font-family: 'Comic Sans MS', cursive;
     font-size: 65px;
     font-weight: 1000;
@@ -422,41 +636,44 @@ div.currentPage:hover .pageIcon {
 }
 
 #loginButton {
-    background: none;
-    border: none;
-    cursor: pointer;
     position: absolute;
     top: 79.5%;
     left: 66.5%;
     transform: rotate(11deg);
+
+    background: none;
+    border: none;
+    cursor: pointer;
+
     padding-left: 40px;
     padding-right: 20px;
     padding-top: 15px;
     padding-bottom: 20px;
-    text-decoration: underline;
 
     font-family: 'Comic Sans MS', cursive;
     font-size: 34px;
     font-weight: 600;
     color: #713F12;
+    text-decoration: underline;
     text-shadow: 0px 2px 3px #713F12;
     text-shadow: 0px 1px 2px #997404;
 }
 
 #loginButtonBackground {
-    width: auto;
-    height: auto;
     position: absolute;
     top: 75%;
     left: 63%;
+    width: auto;
+    height: auto;
 }
 
 #notRegisteredButton {
     position: absolute;
-    top: 85%;
+    top: 82%;
     left: 35%;
+
     font-family: 'Comic Sans MS', cursive;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 300;
     color: #472609;
     text-shadow: 0px 2px 3px #713F12;
@@ -467,16 +684,17 @@ div.currentPage:hover .pageIcon {
 /*   <-- REGISTER PAGE -->   */
 
 
-
 #mainContentRegister {
     width: 100%;
     height: 880px;
+    display: flex;
+    position: relative;
+
     background-image: url('../assets/backgrounds/register_background.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    display: flex;
-    position: relative;
+
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -495,6 +713,7 @@ div.currentPage:hover .pageIcon {
     position: absolute;
     top: 10%;
     left: 30%;
+
     font-family: 'Comic Sans MS', cursive;
     font-size: 40px;
     font-weight: 1000;
@@ -509,6 +728,7 @@ div.currentPage:hover .pageIcon {
     left: 3%;
     display: grid;
     grid-template-columns: repeat(4, max-content);
+    column-gap: 20px;
 
     font-family: 'Comic Sans MS', cursive;
     font-size: 18px;
@@ -517,13 +737,13 @@ div.currentPage:hover .pageIcon {
     text-shadow: 0px 1px 2px #997404;
     text-align: end;
     align-items: center;
-    column-gap: 20px;
 }
 
 #registerPolicy {
     position: absolute;
     top: 110%;
     left: 55%;
+
     font-size: 12px;
     text-align: left;
 }
@@ -551,18 +771,19 @@ div.currentPage:hover .pageIcon {
 }
 
 #registerButton {
-    background: none;
-    border: none;
-    cursor: pointer;
     position: absolute;
     top: 76%;
     left: 54.5%;
     transform: rotate(11deg);
+
     padding-left: 30px;
     padding-right: 10px;
     padding-top: 20px;
     padding-bottom: 20px;
-    text-decoration: underline;
+
+    background: none;
+    border: none;
+    cursor: pointer;
 
     font-family: 'Comic Sans MS', cursive;
     font-size: 22px;
@@ -570,14 +791,15 @@ div.currentPage:hover .pageIcon {
     color: #713F12;
     text-shadow: 0px 2px 3px #713F12;
     text-shadow: 0px 1px 2px #997404;
+    text-decoration: underline;
 }
 
 #registerButtonBackground {
-    width: auto;
-    height: auto;
     position: absolute;
     top: 70%;
     left: 50%;
+    width: auto;
+    height: auto;
 }
 
 #alreadyRegisteredButton {
@@ -594,53 +816,20 @@ div.currentPage:hover .pageIcon {
 }
 
 
-/*   <-- GAME PAGE -->   */
-
-#successfullForm {
-    position: relative;
-    background-color: #02983e;
-    padding: 30px;
-    margin: 0px;
-    border-bottom: 3px solid #472609;
-    text-align: center;
-
-    font-family: 'Comic Sans MS', cursive;
-    font-size: 32px;
-    font-weight: 800;
-    color: #000000;
-    text-shadow: 0px 2px 3px #7aff3d;
-    text-shadow: 0px 1px 2px #5bff32;
-}
-
-#mainContentGame {
-    width: 100%;
-    height: 880px;
-    background-image: url('../assets/backgrounds/game_background.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: flex;
-    position: relative;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-
 /*   <-- LEADERBOARD PAGE -->   */
 
 
-
 #mainContentLeaderboard {
+    display: flex;
+    position: relative;
     width: 100%;
     height: 880px;
+
     background-image: url('../assets/backgrounds/leaderboard_background.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    display: flex;
-    position: relative;
+
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -667,6 +856,7 @@ div.currentPage:hover .pageIcon {
     position: absolute;
     top: 23%;
     left: 26%;
+
     table-layout: fixed;
     border-collapse: collapse;
 }
@@ -734,71 +924,42 @@ div.currentPage:hover .pageIcon {
 }
 
 
+/*   <-- GAME PAGE -->   */
 
 
+#successfullForm {
+    position: relative;
+    text-align: center;
+    padding: 30px;
+    margin: 0px;
 
-/*   <-- Footer Styles -->   */
+    border-bottom: 3px solid #472609;
+    background-color: #02983e;
 
-#footer {
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 32px;
+    font-weight: 800;
+    color: #000000;
+    text-shadow: 0px 2px 3px #7aff3d;
+    text-shadow: 0px 1px 2px #5bff32;
+}
+
+#mainContentGame {
+    display: flex;
+    position: relative;
     width: 100%;
-    height: 80px;
-    background-color: #b58d55;
-    color: #fff;
-    position: relative;
-    display: flex;
+    height: 880px;
+
+    background-image: url('../assets/backgrounds/game_background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    gap: 1%;
+    text-align: center;
 }
-
-.footer_social_media {
-    width: 30px;
-    height: 30px;
-    position: relative;
-    left: 10px;
-}
-
-#footer_social_media_text {
-    font-family: Inter, sans-serif cursive;
-    font-size: 20px;
-    font-weight: 600;
-    font-style: italic;
-    color: black;
-    text-decoration: underline;
-    padding-left: 20px;
-}
-
-#footer_text {
-    position: absolute;
-    align-items: center;
-    font-size: 12px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-#footer_email {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    right: 75px;
-    font-family: Inter, sans-serif cursive;
-    font-size: 20px;
-    font-style: italic;
-    color: black;
-    font-weight: 600;
-}
-
-#footer_email_link {
-    font-size: 16px;
-    font-weight: 300;
-    padding-right: 35px;
-    padding-left: 10px;
-    font-style: italic;
-}
-
-#footer_email_icon {
-    width: 30px;
-    height: 30px;
-}   
 
 
 /*   <-- LEVEL SELECT -->   */
@@ -842,7 +1003,7 @@ div.currentPage:hover .pageIcon {
     grid-auto-flow: column;
 }
 
-/*   <-- LEVEL 1 -->   */
+/*   <-- LEVELS -->   */
 
 .levels {
     position: relative;
@@ -852,6 +1013,7 @@ div.currentPage:hover .pageIcon {
     position: relative;
     display: flex;
     text-align: left;
+
     padding: 0px;
     border: 0px;
     margin-bottom: 3px;
@@ -869,6 +1031,7 @@ div.currentPage:hover .pageIcon {
     position: relative;
     display: flex;
     text-align: left;
+
     padding: 0px;
     border: 0px;
     margin: 2px;
@@ -886,10 +1049,12 @@ div.currentPage:hover .pageIcon {
     position: absolute;
     bottom: 0px;
     right: 1%;
+
     padding: 0px;
     border: 0px;
     margin: 0px;
     width: 150px;
+
     background: none;
     border: none;
     cursor: pointer;
@@ -915,7 +1080,8 @@ div.currentPage:hover .pageIcon {
 #level2Lock,
 #level3Lock,
 #level4Lock,
-#level5Lock {
+#level5Lock,
+#level6Lock {
     position: absolute;
     top: -1%;
     left: -2%;
@@ -928,8 +1094,7 @@ div.currentPage:hover .pageIcon {
 }
 
 
-
-/*   <-- LEVEL PAGE -->   */
+/*   <-- LEVEL SCREEN -->   */
 
 #levelScreen {
     position: relative;
@@ -937,16 +1102,17 @@ div.currentPage:hover .pageIcon {
     height: 100%;
 }
 
+/* Canvas */
+
 canvas {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+
     border: 20px solid transparent;
     border-image: url("../assets/game/canvas_border.png") 60 round;
 }
-
-
 
 #backToLevelSelect {
     position: absolute;
@@ -955,7 +1121,6 @@ canvas {
 
     background: none;
     border: none;
-
     cursor: pointer;
 }
 
@@ -966,7 +1131,6 @@ canvas {
     
     background: none;
     border: none;
-
     cursor: pointer;
 }
 
@@ -974,6 +1138,8 @@ canvas {
 #retryLevelImage {
     width: 70px;
 }
+
+/* Inventory */
 
 #inventory {
     position: absolute;
@@ -1001,6 +1167,8 @@ canvas {
     height: 65px;
     width: 65px;
 }
+
+/* Timer */
 
 #timer {
     position: flex;
@@ -1031,6 +1199,8 @@ canvas {
     color: #8f5b2e;
     text-shadow: 3px 3px 1px #2f2e2e;
 }
+
+/* List of groceries */
 
 #listedGroceries {
     position: absolute;
@@ -1081,6 +1251,7 @@ canvas {
     transform: translateY(-50%);
 }
 
+/* Level finished window */
 
 #levelFinished {
     position: absolute;
@@ -1160,3 +1331,71 @@ canvas {
     display: block;
     width: 350px;
 }
+
+
+/*   <-- Footer Styles -->   */
+
+
+#footer {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 80px;
+
+    background-color: #b58d55;
+    color: #fff;
+    align-items: center;
+    gap: 1%;
+}
+
+.footer_social_media {
+    position: relative;
+    left: 10px;
+    width: 30px;
+    height: 30px;
+}
+
+#footer_social_media_text {
+    font-family: Inter, sans-serif cursive;
+    font-size: 20px;
+    font-weight: 600;
+    font-style: italic;
+    color: black;
+    text-decoration: underline;
+    padding-left: 20px;
+}
+
+#footer_text {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    align-items: center;
+
+    font-size: 12px;
+}
+
+#footer_email {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    right: 75px;
+
+    font-family: Inter, sans-serif cursive;
+    font-size: 20px;
+    font-style: italic;
+    color: black;
+    font-weight: 600;
+}
+
+#footer_email_link {
+    font-size: 16px;
+    font-weight: 300;
+    padding-right: 35px;
+    padding-left: 10px;
+    font-style: italic;
+}
+
+#footer_email_icon {
+    width: 30px;
+    height: 30px;
+}   

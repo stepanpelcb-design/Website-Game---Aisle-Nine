@@ -9,8 +9,14 @@
         
         <link rel="stylesheet" href="../../CSS/styles.css">
 
-        <script src="../../javascript/sessionStorage.js" defer></script>
-        <script src="../../javascript/leaderboard.js" defer></script>
+        <script type="module" src="../../javascript/sessionStorage.js"></script>
+        <script type="module" src="../../javascript/character.js"></script>
+        <script type="module" src="../../javascript/leaderboard.js"></script>
+        <script>
+            if (sessionStorage.getItem("loggedInUser") !== null) {
+                document.documentElement.classList.add("loggedIn");
+            }
+        </script>
     </head>
 
     <body>
@@ -27,18 +33,6 @@
                 
                 </div>
                 <div class="page">
-                    <a class="pageStyle" href="login.html">
-                        <img class="pageIcon" src="../../assets/page_buttons/button_background.png" alt="Login Icon">
-                        <span class="pageButtonText">Login</span>
-                    </a>
-                </div>
-                <div class="page">
-                    <a class="pageStyle" href="register.html">
-                        <img class="pageIcon" src="../../assets/page_buttons/button_background.png" alt="Register Icon">
-                        <span class="pageButtonText">Register</span>
-                    </a>
-                </div>
-                <div class="page">
                     <a class="page" href="game.html">
                         <img class="pageIcon" src="../../assets/page_buttons/button_background.png" alt="Game Icon">
                         <span class="pageButtonText">Game</span>
@@ -50,12 +44,58 @@
                         <span id="pageButtonTextLeaderboard">Leaderboard</span>
                     </a>
                 </div>
-                <div id="userIcon">
-                    <img id="userIconImage" src="../../assets/user_icon.png" alt="User Icon">
-                    <a id="usernameIcon" href="login.html">Log in</a>
-                    <button hidden id="usernameIconLogged" onclick="logoutUser()"></button>
+                <div class="page" id="navLogin">
+                    <a id="pageStyle" href="login.html">
+                        <img class="pageIcon" src="../../assets/page_buttons/button_background.png" alt="Login Icon">
+                        <span class="pageButtonText">Login</span>
+                    </a>
                 </div>
+                <div class="page" id="navRegister">
+                    <a class="page" href="register.html">
+                        <img class="pageIcon" src="../../assets/page_buttons/button_background.png" alt="Register Icon">
+                        <span class="pageButtonText">Register</span>
+                    </a>
+                </div>
+                <div hidden id="userDetails">
+                    <p id="loggedUser"></p>
+                    <p id="loggedUserStats"></p>
+                    <button id="characterButton">Character</button>
+                    <button id="logoutUser">Log out</button>
+                </div>
+                <button id="userIcon">
+                    <img id="userIconImage" src="../../assets/user_icon.png" alt="User Icon">
+                    <span id="userIconText">Guest</span>
+                </button>
+                <p hidden id="notLoggedInText">Please log in.</p>
             </nav>
+            <div hidden id="characterSelect">
+                <h1 id="characterHeading">Choose your character</h1>
+                <div id="characterList">
+                    <button class="character" data-character="default">
+                        <img class ="tigerImage" src="../../assets/characters/tiger_default.png" alt="Default Character">
+                        <span class="characterName">Default</span>
+                    </button>
+                    <button class="character" data-character="snow">
+                        <img class ="tigerImage" src="../../assets/characters/tiger_snow.png" alt="Snow Character">
+                        <span class="characterName">Snow</span>
+                    </button>
+                    <button class="character" data-character="pink">
+                        <img class ="tigerImage" src="../../assets/characters/tiger_pink.png" alt="Pink Character">
+                        <span class="characterName">Pink</span>
+                    </button>
+                    <button class="character" data-character="zombie">
+                        <img class ="tigerImage" src="../../assets/characters/tiger_zombie.png" alt="Zombie Character">
+                        <span class="characterName">Zombie</span>
+                    </button>
+                    <button class="character" data-character="insane">
+                        <img class ="tigerImage" src="../../assets/characters/tiger_insane.png" alt="Insane Character">
+                        <span class="characterName">Insane</span>
+                    </button>
+                </div>
+                <button id="characterSelectExit">
+                    <img id="characterSelectExitImage" src="../../assets/game/back_to_level_select_button.png" alt="Character Select Exit">
+                </button>
+            </div>
         </header>
 
         <div id="divider">

@@ -1,10 +1,20 @@
 "use strict";
 
-// Storing the element id for level select and level screen.
+// =============
+//    Imports
+// =============
+
+import { refreshUnlockedLevels } from "../javascript/users.js";
+import { startGame, stopGame } from "../javascript/game.js";
+import { closeCharacterSelect } from "../javascript/character.js";
+
+// HTML tags.
+
 const levelSelect = document.getElementById("levelSelect");
 const levelScreen = document.getElementById("levelScreen");
 const toLevelSelect = document.getElementById("backToLevelSelect");
-const restartButton = document.getElementById("retryLevel");
+const levelFinished = document.getElementById("levelFinished");
+const characterSelectButton = document.getElementById("characterButton");
 let level = 0;
 
 
@@ -18,16 +28,6 @@ function startLevel(n) {
     levelSelect.hidden = true;
 }
 
-/** Restarts the current level.
- */
-function restartLevel() {
-    if (level === 0) {
-        return;
-    }
-    stopGame();
-    startGame(level);
-}
-
 /** Hides the level screen and shows the level select screen. 
  *  Stops the current level loop. 
 */
@@ -36,8 +36,11 @@ function backToLevelSelect() {
     stopGame();
     levelScreen.hidden = true;
     levelSelect.hidden = false;
+    showCharacterButton();
     level = 0;
 }
+
+document.getElementById("levelFinishedContinueButton").addEventListener("click", continueBackToLevelSelect);
 
 /** Returns the user to the level select, after completing a level.
  */
@@ -51,6 +54,8 @@ function continueBackToLevelSelect() {
 document.querySelectorAll(".buttonLevels").forEach((levelButton) => {
     levelButton.addEventListener("click", () => {
         startLevel(Number(levelButton.dataset.level));
+        showCharacterButton();
+        closeCharacterSelect();
     });
 });
 
@@ -73,37 +78,6 @@ function successfullForm(form) {
     }, 5000);
 }
 
-/** Returns the username from local storage.
- */
-function getCurrentUsername() {
-    const username = sessionStorage.getItem("loggedInUser");
-    if (username === null) {
-        return null;
-    }
-    return JSON.parse(localStorage.getItem(username));
-}
-
-/** Returns the unlocked levels for current user.
- */
-function getUnlockedLevel() {
-    const username = getCurrentUsername();
-    if (username === null || username.unlockedLevel === undefined) {
-        return 1;
-    }
-    return username.unlockedLevel;
-}
-
-/** Updates the unlocked levels for current user.
- */
-function refreshUnlockedLevels() {
-    const unlockedLevel = getUnlockedLevel();
-
-    for (let n = 2; n <= 5; n++) {
-        const isLocked = n > unlockedLevel;
-        document.getElementById("level" + n + "Lock").hidden = !isLocked;
-    }
-}
-
 // Successfull form fill.
 
 const formType = sessionStorage.getItem("successfullForm");
@@ -113,8 +87,11 @@ if (formType !== null) {
     sessionStorage.removeItem("successfullForm");
 }
 
-// Event listeners and update unlocked levels.
-
-restartButton.addEventListener("click", restartLevel);
 toLevelSelect.addEventListener("click", backToLevelSelect);
 refreshUnlockedLevels();
+
+/** Shows/hides the charater select button, based on if the game is running.
+ */
+function showCharacterButton() {
+    characterSelectButton.hidden = !levelScreen.hidden;
+}

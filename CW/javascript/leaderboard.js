@@ -1,7 +1,18 @@
 "use strict";
 
-const leaderboardBody = document.getElementById("tableBody");
+// =============
+//    Imports
+// =============
 
+import { isLoggedIn } from "../javascript/users.js";
+
+
+// HTML tags.
+
+const leaderboardBody = document.getElementById("tableBody");
+const leaderboardBlur = document.getElementById("notLoggedInLeaderboard");
+
+leaderboardBlur.hidden = isLoggedIn();
 
 /** Writes the leaderboard line, based on the input values.
  */
@@ -14,12 +25,12 @@ function writeLeaderboardLine(position, username, completedLevel, score) {
     row.insertCell(-1).innerHTML = score;
 }
 
-
-
 /** Updates the leaderboard with session storage data and keeps the first 10 records.
  */
 function updateLeaderboard() {
     let entries = [];
+
+    // Loop users.
     for (let i = 0; i < localStorage.length; i++) {
         let user;
         try {
@@ -29,10 +40,11 @@ function updateLeaderboard() {
             continue;
         }
 
-        if (user === null) {
+        if (user === null || !Array.isArray(user.levelScore)) {
             continue;
         }
         
+        // Score and completed levels calculation.
         let score = 0;
         let completedLevels = 0;
         const scores = user.levelScore
@@ -45,7 +57,6 @@ function updateLeaderboard() {
         }
 
         if (score > 0) {
-            const completedLevel = user.unlockedLevel - 1;
             entries.push({
                 username: user.username,
                 completedLevels: completedLevels,
@@ -54,9 +65,11 @@ function updateLeaderboard() {
         }
     }
 
+    // Sorting the top 10 highest scores.
     entries.sort((a, b) => b.score - a.score);
     entries = entries.slice(0, 10);
 
+    // Drawing the leaderboard.
     for (let i = 0; i < entries.length; i++) {
         let suffix = "th";
         if (i === 0) {
@@ -74,13 +87,3 @@ function updateLeaderboard() {
 }
 
 updateLeaderboard();
-
-const leaderboardBlur = document.getElementById("notLoggedInLeaderboard");
-
-/** Returns if the user is logged in, or not.
- */
-function isLoggedIn() {
-    return sessionStorage.getItem("loggedInUser") !== null;
-}
-
-leaderboardBlur.hidden = isLoggedIn();

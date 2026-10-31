@@ -8,10 +8,14 @@
         <title>Game Page</title>
         <link rel="stylesheet" href="../../CSS/styles.css">
 
-        <script src="../../javascript/sessionStorage.js" defer></script>
-        <script src="../../javascript/levelSelect.js" defer></script>
-        <script src="../../javascript/levels.js" defer></script>
-        <script src="../../javascript/game.js" defer></script>
+        <script type="module" src="../../javascript/sessionStorage.js"></script>
+        <script type="module" src="../../javascript/character.js"></script>
+        <script type="module" src="../../javascript/levelSelect.js"></script>
+        <script>
+            if (sessionStorage.getItem("loggedInUser") !== null) {
+                document.documentElement.classList.add("loggedIn");
+            }
+        </script>
     </head>
 
     <body>
@@ -28,18 +32,6 @@
                     </a>
                 
                 </div>
-                <div class="page">
-                    <a class="pageStyle" href="login.html">
-                        <img class="pageIcon" src="../../assets/page_buttons/button_background.png" alt="Login Icon">
-                        <span class="pageButtonText">Login</span>
-                    </a>
-                </div>
-                <div class="page">
-                    <a class="pageStyle" href="register.html">
-                        <img class="pageIcon" src="../../assets/page_buttons/button_background.png" alt="Register Icon">
-                        <span class="pageButtonText">Register</span>
-                    </a>
-                </div>
                 <div class="currentPage">
                     <a id="currentPageStyle" href="game.html">
                         <img class="pageIcon" src="../../assets/page_buttons/current_button_background.png" alt="Game Icon">
@@ -52,12 +44,58 @@
                         <span id="pageButtonTextLeaderboard">Leaderboard</span>
                     </a>
                 </div>
-                <div id="userIcon">
-                    <img id="userIconImage" src="../../assets/user_icon.png" alt="User Icon">
-                    <a id="usernameIcon" href="login.html">Log in</a>
-                    <button hidden id="usernameIconLogged" onclick="logoutUser()"></button>
+                <div class="page" id="navLogin">
+                    <a id="pageStyle" href="login.html">
+                        <img class="pageIcon" src="../../assets/page_buttons/button_background.png" alt="Login Icon">
+                        <span class="pageButtonText">Login</span>
+                    </a>
                 </div>
+                <div class="page" id="navRegister">
+                    <a class="page" href="register.html">
+                        <img class="pageIcon" src="../../assets/page_buttons/button_background.png" alt="Register Icon">
+                        <span class="pageButtonText">Register</span>
+                    </a>
+                </div>
+                <div hidden id="userDetails">
+                    <p id="loggedUser"></p>
+                    <p id="loggedUserStats"></p>
+                    <button id="characterButton">Character</button>
+                    <button id="logoutUser">Log out</button>
+                </div>
+                <button id="userIcon">
+                    <img id="userIconImage" src="../../assets/user_icon.png" alt="User Icon">
+                    <span id="userIconText">Guest</span>
+                </button>
+                <p hidden id="notLoggedInText">Please log in.</p>
             </nav>
+            <div hidden id="characterSelect">
+                <h1 id="characterHeading">Choose your character</h1>
+                <div id="characterList">
+                    <button class="character" data-character="default">
+                        <img class ="tigerImage" src="../../assets/characters/tiger_default.png" alt="Default Character">
+                        <span class="characterName">Default</span>
+                    </button>
+                    <button class="character" data-character="snow">
+                        <img class ="tigerImage" src="../../assets/characters/tiger_snow.png" alt="Snow Character">
+                        <span class="characterName">Snow</span>
+                    </button>
+                    <button class="character" data-character="pink">
+                        <img class ="tigerImage" src="../../assets/characters/tiger_pink.png" alt="Pink Character">
+                        <span class="characterName">Pink</span>
+                    </button>
+                    <button class="character" data-character="zombie">
+                        <img class ="tigerImage" src="../../assets/characters/tiger_zombie.png" alt="Zombie Character">
+                        <span class="characterName">Zombie</span>
+                    </button>
+                    <button class="character" data-character="insane">
+                        <img class ="tigerImage" src="../../assets/characters/tiger_insane.png" alt="Insane Character">
+                        <span class="characterName">Insane</span>
+                    </button>
+                </div>
+                <button id="characterSelectExit">
+                    <img id="characterSelectExitImage" src="../../assets/game/back_to_level_select_button.png" alt="Character Select Exit">
+                </button>
+            </div>
         </header>
 
         <div id="divider">
@@ -134,6 +172,15 @@
                             </button>
                             <img id="level5Lock" src="../../assets/game/level_select/lock.png">
                         </div>
+                        <div class="levels">
+                            <h class="levelsHeader">Level 6</h>
+                            <p class="levelsDescription">Six groceries and many powerups to pick up. <br><br>Difficulty: Impossible<br>Obstacles: (banana peel,<br>fallen boxes, spilled liquid,<br>angry old lady)<br>Maze size: 24x24<br></p>
+                            <button class="buttonLevels" data-level="6">
+                                <img class="barCodeLevels" src="../../assets/game/level_select/barcode_level6.png" alt="Level 6 Bar Code">
+                                <span class="textLevels">6</span>
+                            </button>
+                            <img id="level6Lock" src="../../assets/game/level_select/lock.png">
+                        </div>
                     </div>
                 </div>
 
@@ -173,7 +220,7 @@
                     <div id="levelFinishedContent">
                         <p id="levelFinishedText">Your Time: <span id="finalTime"></span><br>Your Score: <span id="finalScore"></span></p>
                     </div>
-                    <button id="levelFinishedContinueButton" onclick="continueBackToLevelSelect()">
+                    <button id="levelFinishedContinueButton">
                         <img id="levelFinishedContinueImage" src="../../assets/game/continue_button.png" alt="Continue Button">
                     </button>
                 </div>
