@@ -18,58 +18,70 @@
     </head>
 
     <body>
+        <!-- ======= HEADER: logo, navigation, user menu ======= -->
         <header>
+            <!-- Logo -->
             <div>
                 <img id="logo" src="../assets/elements/aisle_nine_logo.png" alt="Aisle Nine Logo">
             </div>
 
+            <!-- Navigation -->
             <nav>
+
+                <!-- Page buttons -->
                 <div class="currentPage">
-                    <a id="currentPageStyle" href="index.html">
+                    <a href="index.html">
                         <img class="pageIcon" src="../assets/page_buttons/current_button_background.png" alt="Home Icon">
                         <span class="pageButtonText">Home</span>
                     </a>
-                
                 </div>
                 <div class="page">
-                    <a class="page" href="pages/game.html">
+                    <a href="pages/game.html">
                         <img class="pageIcon" src="../assets/page_buttons/button_background.png" alt="Game Icon">
                         <span class="pageButtonText">Game</span>
                     </a>
                 </div>
                 <div class="page">
-                    <a class="page" href="pages/leaderboard.html">
+                    <a href="pages/leaderboard.html">
                         <img class="pageIcon" src="../assets/page_buttons/button_background.png" alt="Leaderboard Icon">
                         <span id="pageButtonTextLeaderboard">Leaderboard</span>
                     </a>
                 </div>
                 <div class="page" id="navLogin">
-                    <a class="page" href="pages/login.html">
+                    <a href="pages/login.html">
                         <img class="pageIcon" src="../assets/page_buttons/button_background.png" alt="Login Icon">
                         <span class="pageButtonText">Login</span>
                     </a>
                 </div>
                 <div class="page" id="navRegister">
-                    <a class="page" href="pages/register.html">
+                    <a href="pages/register.html">
                         <img class="pageIcon" src="../assets/page_buttons/button_background.png" alt="Register Icon">
                         <span class="pageButtonText">Register</span>
                     </a>
                 </div>
+
+                <!-- User card -->
                 <div hidden id="userDetails">
                     <p id="loggedUser"></p>
                     <p id="loggedUserStats"></p>
                     <button id="characterButton">Character</button>
                     <button id="logoutUser">Log out</button>
                 </div>
+
+                <!-- User icon -->
                 <button id="userIcon">
                     <img id="userIconImage" src="../assets/user_icon.png" alt="User Icon">
                     <span id="userIconText">Guest</span>
                 </button>
                 <p hidden id="notLoggedInText">Please log in.</p>
-            </nav>  
+            </nav>
+
+            <!-- Character select -->
             <div hidden id="characterSelect">
                 <h1 id="characterHeading">Choose your character</h1>
                 <div id="characterList">
+
+                    <!-- character buttons -->
                     <button class="character" data-character="default">
                         <img class ="tigerImage" src="../assets/characters/tiger_default.png" alt="Default Character">
                         <span class="characterName">Default</span>
@@ -91,20 +103,25 @@
                         <span class="characterName">Insane</span>
                     </button>
                 </div>
+
+                <!-- Exit button -->
                 <button id="characterSelectExit">
                     <img id="characterSelectExitImage" src="../assets/game/back_to_level_select_button.png" alt="Character Select Exit">
                 </button>
             </div>
         </header>
 
-        <div id="divider">
+        <!-- ======= BELT DIVIDER ======= -->
+        <div class="divider">
         </div>
 
+        <!-- Belt video -->
         <div id="belt">
             <video id="beltVideo" autoplay muted loop playsinline aria-hidden="true">
                 <source src="../assets/belt_loop_slow_brown.mp4" type="video/mp4">
             </video>
 
+            <!-- Belt text -->
             <div class="beltText">
                 <span class="beltTextBlur">Move!</span>
                 <span class="beltTextBlur">Pick Up!</span>
@@ -115,24 +132,27 @@
             </div>
         </div>
 
-        <div id="divider">
+        <div class="divider">
         </div>
 
-
+        <!-- ======= MAIN CONTENT ======= -->
         <div id="mainContentHome">
             <h1 id="mainContentTitle">Welcome to Aisle Nine!</h1>
+
+            <!-- Home page instructions and character -->
             <p>
                 <img id="homeInstructions" src="../assets/elements/home_page_instructions.png" alt="Content Instructions">
                 <img id="homeCharacter" src="../assets/characters/home_page_character.png" alt="Content Character">
             </p>
         </div>
         
-
+        <!-- ======= FOOTER ======= -->
         <footer id="footer">
+
+            <!-- Social media -->
             <p id="footer_social_media_text">
             Check out our social media:
             </p>
-            
             <a href="https://www.instagram.com" target="_blank">
                 <img class="footer_social_media" src="../assets/footer_icons/instagram.png" alt="Footer Instagram Icon">
             </a>
@@ -149,10 +169,12 @@
                 <img class="footer_social_media" src="../assets/footer_icons/X.png" alt="Footer X Icon">
             </a>
 
+            <!-- Rights -->
             <p id="footer_text">
                 © 2026 Aisle Nine. Created by Stepan Pelc. All rights reserved.
             </p>
 
+            <!-- Email -->
             <div id="footer_email">
                 <p>
                     Contact Us: <span id="footer_email_link">info@aislenine.com</span>
@@ -161,8 +183,6 @@
                     <img id="footer_email_icon" src="../assets/footer_icons/email.png" alt="Footer Email Icon">
                 </a>
             </div>
-
         </footer>
     </body>
-    
 </html>

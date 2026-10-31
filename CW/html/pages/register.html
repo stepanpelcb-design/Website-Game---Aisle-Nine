@@ -4,9 +4,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link rel="icon" href="../../assets/elements/aisle_nine_emoji.png">
         <title>Register Page</title>
-        
+        <link rel="icon" href="../../assets/elements/aisle_nine_emoji.png">
         <link rel="stylesheet" href="../../CSS/styles.css">
 
         <script type="module" src="../../javascript/validation.js" defer></script>
@@ -14,53 +13,67 @@
     </head>
 
     <body>
+        <!-- ======= HEADER: logo, navigation, user menu ======= -->
         <header>
             <div>
                 <img id="logo" src="../../assets/elements/aisle_nine_logo.png" alt="Aisle Nine Logo">
             </div>
+
+            <!-- Navigation -->
             <nav>
+
+                <!-- Page buttons -->
                 <div class="page">
-                    <a class="pageStyle" href="../index.html">
+                    <a href="../index.html">
                         <img class="pageIcon" src="../../assets/page_buttons/button_background.png" alt="Home Icon">
                         <span class="pageButtonText">Home</span>
                     </a>
-                
                 </div>
                 <div class="page">
-                    <a class="page" href="game.html">
+                    <a href="game.html">
                         <img class="pageIcon" src="../../assets/page_buttons/button_background.png" alt="Game Icon">
                         <span class="pageButtonText">Game</span>
                     </a>
                 </div>
                 <div class="page">
-                    <a class="page" href="leaderboard.html">
+                    <a href="leaderboard.html">
                         <img class="pageIcon" src="../../assets/page_buttons/button_background.png" alt="Leaderboard Icon">
                         <span id="pageButtonTextLeaderboard">Leaderboard</span>
                     </a>
                 </div>
                 <div class="page" id="navLogin">
-                    <a id="pageStyle" href="login.html">
+                    <a href="login.html">
                         <img class="pageIcon" src="../../assets/page_buttons/button_background.png" alt="Login Icon">
                         <span class="pageButtonText">Login</span>
                     </a>
                 </div>
                 <div class="currentPage" id="navRegister">
-                    <a class="page" href="register.html">
+                    <a href="register.html">
                         <img class="pageIcon" src="../../assets/page_buttons/current_button_background.png" alt="Register Icon">
                         <span class="pageButtonText">Register</span>
                     </a>
                 </div>
+
+                <!-- User icon -->
+                <button id="userIcon">
+                    <img id="userIconImage" src="../../assets/user_icon.png" alt="User Icon">
+                    <span id="userIconText">Guest</span>
+                </button>
+                <p hidden id="notLoggedInText">Please log in.</p>
             </nav>
         </header>
 
-        <div id="divider">
+        <!-- ======= BELT DIVIDER ======= -->
+        <div class="divider">
         </div>
 
+        <!-- Belt video -->
         <div id="belt">
             <video id="beltVideo" autoplay muted loop playsinline aria-hidden="true">
                 <source src="../../assets/belt_loop_slow_brown.mp4" type="video/mp4">
             </video>
 
+            <!-- Belt text -->
             <div class="beltText">
                 <span class="beltTextBlur">Move!</span>
                 <span class="beltTextBlur">Pick Up!</span>
@@ -71,18 +84,19 @@
             </div>
         </div>
 
-        <div id="divider">
+        <div class="divider">
         </div>
 
-
+        <!-- ======= MAIN CONTENT ======= -->
         <div id="mainContentRegister">
             <h1 id="mainContentTitle">Create a new account!</h1>
 
+            <!-- User register card -->
             <div id="registerCard">
                 <img id="registerCharacter" src="../../assets/characters/register_page_character.png" alt="Register Character">
                 <h1 id="registerHeader">Register</h1>
                 
-
+                <!-- Register form -->
                 <form action="" name="registerForm" id="registerForm">
 
                     Username: <input type="text" name="Username" placeholder="Username" id="registerUsername" required> 
@@ -101,20 +115,24 @@
                 </form>
 
                 <p id="registerPasswordSpecifications"><span id="registerPasswordSpecificationsHeader">Password Specifications<br></span>The password has to be at least 8 characters long,<br>it must include one number, one lower letter,<br>one upper letter, and one special character.</p>
-
-                <img id="registerButtonBackground" src="../../assets/elements/login_register_button.png" alt="Register Button Background">
-                <button type="submit" form="registerForm" id="registerButton">Register</button>
-
+                
                 <a id="alreadyRegisteredButton" href="login.html">Already registered? Click to login.</a>
+
+                <!-- Submit button -->
+                <div>
+                    <img id="registerButtonBackground" src="../../assets/elements/login_register_button.png" alt="Register Button Background">
+                    <button type="submit" form="registerForm" id="registerButton">Register</button>
+                </div>
             </div>
         </div>
         
-
+        <!-- ======= FOOTER ======= -->
         <footer id="footer">
+
+            <!-- Social media -->
             <p id="footer_social_media_text">
             Check out our social media:
             </p>
-            
             <a href="https://www.instagram.com" target="_blank">
                 <img class="footer_social_media" src="../../assets/footer_icons/instagram.png" alt="Footer Instagram Icon">
             </a>
@@ -131,10 +149,12 @@
                 <img class="footer_social_media" src="../../assets/footer_icons/X.png" alt="Footer X Icon">
             </a>
 
+            <!-- Rights -->
             <p id="footer_text">
                 © 2026 Aisle Nine. Created by Stepan Pelc. All rights reserved.
             </p>
 
+            <!-- Email -->
             <div id="footer_email">
                 <p>
                     Contact Us: <span id="footer_email_link">info@aislenine.com</span>
@@ -143,8 +163,6 @@
                     <img id="footer_email_icon" src="../../assets/footer_icons/email.png" alt="Footer Email Icon">
                 </a>
             </div>
-
         </footer>
     </body>
-    
 </html>

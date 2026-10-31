@@ -259,6 +259,7 @@ div.currentPage:hover .pageIcon {
 
     background-color: #ba7539;
     border: solid 1px;
+    border-radius: 3px;
     cursor: pointer;
 
     font-family: 'Times New Roman', sans-serif;
@@ -414,7 +415,7 @@ div.currentPage:hover .pageIcon {
     backdrop-filter: blur(2px);
 }
 
-#divider {
+.divider {
     width: 100%;
     height: 5px;
     background-color: #614723;
@@ -979,7 +980,6 @@ input[type="tel"]::placeholder {
     transform: translateY(-50%);
 }
 
-
 #levelSelect {
     position: absolute;
     top: 5%;
@@ -987,6 +987,8 @@ input[type="tel"]::placeholder {
     width: 98%;
     height: 88%;
 }
+
+/*   <-- LEVELS -->   */
 
 #levels {
     position: absolute;
@@ -1003,8 +1005,6 @@ input[type="tel"]::placeholder {
     grid-auto-flow: column;
 }
 
-/*   <-- LEVELS -->   */
-
 .levels {
     position: relative;
 }
@@ -1016,6 +1016,7 @@ input[type="tel"]::placeholder {
 
     padding: 0px;
     border: 0px;
+    margin-top: 0px;
     margin-bottom: 3px;
 
     font-family: 'Comic Sans MS', cursive;

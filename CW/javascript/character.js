@@ -7,14 +7,23 @@ const characterSelect = document.getElementById("characterSelect");
 const characterButtons = document.querySelectorAll(".character");
 const characterSelectExit = document.getElementById("characterSelectExit");
 
-/** Stores the selected character in local storage for currently logged user
- *  and changes the class of the other characters.
+/** Changes the class for the selected character and unselects every other characters.
+ */
+function markSelected(name) {
+    for (const button of characterButtons) {
+        if (button.dataset.character === name) {
+            button.className = "selectedCharacter";
+        }
+        else {
+            button.className = "character";
+        }
+    }
+}
+
+/** Stores the selected character in local storage for currently logged user.
  */
 function selectCharacter(clickedButton) {
-    for (const button of characterButtons) {
-        button.className = "character";
-    }
-    clickedButton.className = "selectedCharacter";
+    markSelected(clickedButton.dataset.character);
     localStorage.setItem("character", clickedButton.dataset.character);
     window.location.reload();
 }
@@ -37,3 +46,7 @@ characterSelectExit.addEventListener("click", closeCharacterSelect);
 characterSelectButton.addEventListener("click", () => {
     characterSelect.hidden = false
 });
+
+// Mark selected character.
+
+markSelected(localStorage.getItem("character" || "default"));
